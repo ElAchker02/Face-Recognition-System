@@ -1,0 +1,193 @@
+/* #title2{
+    font-size : 16px;
+    font-family: Amazone BT;
+}
+
+#title{
+    max-width: 35px;
+    max-height: 35px;
+}
+
+#menu_btn{
+    border:none;
+}
+
+QStackedWidget{
+    background-color: #fff
+}
+
+QListWidget , #title_frame{
+    background-color : #f0f0f0
+}
+
+#stackedWidget , #title_frame{
+    border : 1px solid #828790
+}
+
+#stackedWidget {
+    border-left : none;
+}
+
+#title_frame{
+    border-bottom:none;
+}
+
+#ListWidget{
+    font-size : 13px;
+    font-family : Segoe UI Semibold;
+}
+
+#ListWidget::item, #listWidget_icon::item{
+    border:0px;
+    padding:5px 10px;
+    margin:2px 0;
+}
+
+#ListWidget::item{
+    border-top-right-radius:15px;
+    border-bottom-right-radius:15px;
+}
+
+#listWidget_icon::item{
+    border-top-right-radius:18px;
+    border-bottom-right-radius:18px;
+}
+
+#listWidget_icon::item{
+    padding-top :0px;
+}
+
+#ListWidget::item:hover,
+#listWidget_icon::item:hover{
+    background-color: #dadada ;
+}
+
+#ListWidget::item:selected,
+#listWidget_icon::item:selected{
+    background-color: #00aaff ;
+}
+
+#ListWidget::icon{
+    width:16px;
+    height:16px;
+}
+
+#listWidget_icon::icon{
+    width :23px;
+    height : 23px;
+} */
+
+
+/* Styling for title labels */
+#title2 {
+    font-size: 16px;
+    font-family: Amazone BT;
+    padding-left: 10px; /* Added padding for better spacing */
+}
+
+#title {
+    max-width: 35px;
+    max-height: 35px;
+    margin: 5px; /* Optional margin to center the logo */
+}
+
+/* Button styling */
+#menu_btn {
+    border: none;
+    background-color: transparent; /* Ensure button background is invisible */
+    padding: 5px;
+}
+
+/* General widget backgrounds */
+QStackedWidget {
+    background-color: #ffffff; /* White background for the content area */
+}
+
+QListWidget, #title_frame {
+    background-color: #f0f0f0; /* Light gray background for sidebars and header */
+}
+
+#stackedWidget, #title_frame {
+    border: 1px solid #828790; /* Subtle border for the content area */
+}
+
+#stackedWidget {
+    border-left: none; /* No border on the left side */
+}
+
+#title_frame {
+    border-bottom: none; /* No border below the header */
+}
+
+/* Sidebar list widget styles */
+#listWidget {
+    font-size: 13px;
+    font-family: "Segoe UI Semibold";
+    border-right: 1px solid #828790; /* Divider line for clarity */
+}
+
+#listWidget::item, #listWidget_icon::item {
+    border: 0px; /* No border for items */
+    padding: 8px 15px; /* Larger padding for better spacing */
+    margin: 3px 0; /* Slight spacing between items */
+}
+
+#listWidget::item {
+    border-top-right-radius: 15px; /* Rounded corners for full sidebar */
+    border-bottom-right-radius: 15px;
+}
+
+#listWidget_icon::item {
+    border-top-right-radius: 18px; /* Rounded corners for icon-only sidebar */
+    border-bottom-right-radius: 18px;
+    padding-top: 5px; /* Top padding for better alignment */
+}
+
+/* Hover and selected states */
+#listWidget::item:hover,
+#listWidget_icon::item:hover {
+    background-color: #dadada; /* Subtle hover effect */
+}
+
+#listWidget::item:selected,
+#listWidget_icon::item:selected {
+    background-color: #00aaff; /* Bright blue for selected items */
+    color: white; /* White text for better contrast */
+}
+
+/* Icon sizes */
+#listWidget::icon {
+    width: 16px;
+    height: 16px;
+}
+
+#listWidget_icon::icon {
+    width: 23px;
+    height: 23px;
+}
+
+/* Transition for smoother sidebar toggle */
+#listWidget, #listWidget_icon {
+    transition: max-width 0.3s ease-in-out; /* Smooth expand/collapse */
+}
+
+/* Optional styling for timestamps and admin labels */
+#admin {
+    font-size: 14px;
+    font-family: "Segoe UI";
+    font-weight: bold;
+    padding-left: 10px;
+}
+
+#timestamps {
+    font-size: 12px;
+    font-family: "Segoe UI";
+    color: #555555; /* Subtle color for timestamps */
+    padding-left: 10px;
+}
+
+#side_menu {
+    border: 1px solid red;  /* Highlight the sidebar for debugging */
+}
+
+
