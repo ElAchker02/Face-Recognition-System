@@ -100,7 +100,7 @@
     <item row="1" column="2">
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="dashboard_page"/>
       <widget class="QWidget" name="Users_page">
@@ -486,6 +486,11 @@ background-color: rgb(85, 170, 255);</string>
         </column>
         <column>
          <property name="text">
+          <string>User</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
           <string>Timstamp</string>
          </property>
         </column>
@@ -715,7 +720,7 @@ background-color: rgb(0, 255, 0);</string>
            <normaloff>../icon/ref.png</normaloff>../icon/ref.png</iconset>
          </property>
         </widget>
-        <widget class="QWidget" name="">
+        <widget class="QWidget" name="layoutWidget">
          <property name="geometry">
           <rect>
            <x>470</x>

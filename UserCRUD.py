@@ -83,7 +83,6 @@ class Ui_MainWindow(object):
 
 
 from PyQt6.QtWidgets import QMainWindow, QMessageBox
-# from uis.UserCRUD import Ui_MainWindow  # Adjust the import path as needed
 
 class UserCRUDWindow(QMainWindow):
     def __init__(self, parent=None):
@@ -95,14 +94,14 @@ class UserCRUDWindow(QMainWindow):
         self.db_manager = DatabaseManager()
 
         # Connect the "Confirmer" button to a method
-        self.ui.btnConfUser.clicked.connect(self.confirm_user)
+        self.ui.btnConfUser.clicked.connect(self.confirm_Dep)
         
         self.stat = ""
         self.idUser = 0
 
         self.load_departments()
 
-    def confirm_user(self):
+    def confirm_Dep(self):
 
         id_user = self.idUser
         name = self.ui.txtName.text().strip()

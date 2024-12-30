@@ -213,14 +213,16 @@ class Ui_MainWindow(object):
 "background-color: rgb(85, 170, 255);")
         self.btnSearchLogs.setIcon(icon3)
         self.tableLogs = QTableWidget(self.logs_page)
-        if (self.tableLogs.columnCount() < 3):
-            self.tableLogs.setColumnCount(3)
+        if (self.tableLogs.columnCount() < 4):
+            self.tableLogs.setColumnCount(4)
         __qtablewidgetitem5 = QTableWidgetItem()
         self.tableLogs.setHorizontalHeaderItem(0, __qtablewidgetitem5)
         __qtablewidgetitem6 = QTableWidgetItem()
         self.tableLogs.setHorizontalHeaderItem(1, __qtablewidgetitem6)
         __qtablewidgetitem7 = QTableWidgetItem()
         self.tableLogs.setHorizontalHeaderItem(2, __qtablewidgetitem7)
+        __qtablewidgetitem8 = QTableWidgetItem()
+        self.tableLogs.setHorizontalHeaderItem(3, __qtablewidgetitem8)
         self.tableLogs.setObjectName(u"tableLogs")
         self.tableLogs.setGeometry(QRect(0, 90, 1281, 541))
         self.tableLogs.setEditTriggers(QAbstractItemView.NoEditTriggers)
@@ -246,10 +248,10 @@ class Ui_MainWindow(object):
         self.tableDepartements = QTableWidget(self.departements_page)
         if (self.tableDepartements.columnCount() < 2):
             self.tableDepartements.setColumnCount(2)
-        __qtablewidgetitem8 = QTableWidgetItem()
-        self.tableDepartements.setHorizontalHeaderItem(0, __qtablewidgetitem8)
         __qtablewidgetitem9 = QTableWidgetItem()
-        self.tableDepartements.setHorizontalHeaderItem(1, __qtablewidgetitem9)
+        self.tableDepartements.setHorizontalHeaderItem(0, __qtablewidgetitem9)
+        __qtablewidgetitem10 = QTableWidgetItem()
+        self.tableDepartements.setHorizontalHeaderItem(1, __qtablewidgetitem10)
         self.tableDepartements.setObjectName(u"tableDepartements")
         self.tableDepartements.setGeometry(QRect(0, 90, 1281, 541))
         self.tableDepartements.setEditTriggers(QAbstractItemView.NoEditTriggers)
@@ -296,13 +298,13 @@ class Ui_MainWindow(object):
         self.btnRefeshAdmins.setGeometry(QRect(0, 30, 33, 29))
         self.btnRefeshAdmins.setStyleSheet(u"background-color: rgb(85, 170, 255);")
         self.btnRefeshAdmins.setIcon(icon1)
-        self.widget = QWidget(self.frame_5)
-        self.widget.setObjectName(u"widget")
-        self.widget.setGeometry(QRect(470, 30, 395, 32))
-        self.horizontalLayout_4 = QHBoxLayout(self.widget)
+        self.layoutWidget = QWidget(self.frame_5)
+        self.layoutWidget.setObjectName(u"layoutWidget")
+        self.layoutWidget.setGeometry(QRect(470, 30, 395, 32))
+        self.horizontalLayout_4 = QHBoxLayout(self.layoutWidget)
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.horizontalLayout_4.setContentsMargins(0, 0, 0, 0)
-        self.btnUpdateAdmin = QPushButton(self.widget)
+        self.btnUpdateAdmin = QPushButton(self.layoutWidget)
         self.btnUpdateAdmin.setObjectName(u"btnUpdateAdmin")
         self.btnUpdateAdmin.setStyleSheet(u"color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 0);")
@@ -310,7 +312,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_4.addWidget(self.btnUpdateAdmin)
 
-        self.btnRemoveAdmin = QPushButton(self.widget)
+        self.btnRemoveAdmin = QPushButton(self.layoutWidget)
         self.btnRemoveAdmin.setObjectName(u"btnRemoveAdmin")
         self.btnRemoveAdmin.setStyleSheet(u"color: rgb(255, 255, 255);\n"
 "background-color: rgb(255, 0, 0);")
@@ -318,7 +320,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_4.addWidget(self.btnRemoveAdmin)
 
-        self.btnAddAdmins = QPushButton(self.widget)
+        self.btnAddAdmins = QPushButton(self.layoutWidget)
         self.btnAddAdmins.setObjectName(u"btnAddAdmins")
         self.btnAddAdmins.setStyleSheet(u"color: rgb(255, 255, 255);\n"
 "background-color: rgb(85, 170, 255);")
@@ -326,7 +328,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_4.addWidget(self.btnAddAdmins)
 
-        self.btnExportAdmins = QPushButton(self.widget)
+        self.btnExportAdmins = QPushButton(self.layoutWidget)
         self.btnExportAdmins.setObjectName(u"btnExportAdmins")
         self.btnExportAdmins.setStyleSheet(u"color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 255, 0);")
@@ -337,14 +339,14 @@ class Ui_MainWindow(object):
         self.tableAdmins = QTableWidget(self.admins_page)
         if (self.tableAdmins.columnCount() < 4):
             self.tableAdmins.setColumnCount(4)
-        __qtablewidgetitem10 = QTableWidgetItem()
-        self.tableAdmins.setHorizontalHeaderItem(0, __qtablewidgetitem10)
         __qtablewidgetitem11 = QTableWidgetItem()
-        self.tableAdmins.setHorizontalHeaderItem(1, __qtablewidgetitem11)
+        self.tableAdmins.setHorizontalHeaderItem(0, __qtablewidgetitem11)
         __qtablewidgetitem12 = QTableWidgetItem()
-        self.tableAdmins.setHorizontalHeaderItem(2, __qtablewidgetitem12)
+        self.tableAdmins.setHorizontalHeaderItem(1, __qtablewidgetitem12)
         __qtablewidgetitem13 = QTableWidgetItem()
-        self.tableAdmins.setHorizontalHeaderItem(3, __qtablewidgetitem13)
+        self.tableAdmins.setHorizontalHeaderItem(2, __qtablewidgetitem13)
+        __qtablewidgetitem14 = QTableWidgetItem()
+        self.tableAdmins.setHorizontalHeaderItem(3, __qtablewidgetitem14)
         self.tableAdmins.setObjectName(u"tableAdmins")
         self.tableAdmins.setGeometry(QRect(0, 90, 1281, 621))
         self.tableAdmins.setEditTriggers(QAbstractItemView.NoEditTriggers)
@@ -371,7 +373,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -414,15 +416,17 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem5 = self.tableLogs.horizontalHeaderItem(0)
         ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"Id log", None));
         ___qtablewidgetitem6 = self.tableLogs.horizontalHeaderItem(1)
-        ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"Timstamp", None));
+        ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"User", None));
         ___qtablewidgetitem7 = self.tableLogs.horizontalHeaderItem(2)
-        ___qtablewidgetitem7.setText(QCoreApplication.translate("MainWindow", u"Emotion", None));
+        ___qtablewidgetitem7.setText(QCoreApplication.translate("MainWindow", u"Timstamp", None));
+        ___qtablewidgetitem8 = self.tableLogs.horizontalHeaderItem(3)
+        ___qtablewidgetitem8.setText(QCoreApplication.translate("MainWindow", u"Emotion", None));
         self.btnRefreshDep.setText("")
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"Departements", None))
-        ___qtablewidgetitem8 = self.tableDepartements.horizontalHeaderItem(0)
-        ___qtablewidgetitem8.setText(QCoreApplication.translate("MainWindow", u"Id Departement", None));
-        ___qtablewidgetitem9 = self.tableDepartements.horizontalHeaderItem(1)
-        ___qtablewidgetitem9.setText(QCoreApplication.translate("MainWindow", u"Departement Name", None));
+        ___qtablewidgetitem9 = self.tableDepartements.horizontalHeaderItem(0)
+        ___qtablewidgetitem9.setText(QCoreApplication.translate("MainWindow", u"Id Departement", None));
+        ___qtablewidgetitem10 = self.tableDepartements.horizontalHeaderItem(1)
+        ___qtablewidgetitem10.setText(QCoreApplication.translate("MainWindow", u"Departement Name", None));
         self.btnUpdateDep.setText(QCoreApplication.translate("MainWindow", u"Update", None))
         self.btnRemoveDep.setText(QCoreApplication.translate("MainWindow", u"Remove", None))
         self.btnAddDepartements.setText(QCoreApplication.translate("MainWindow", u"Add", None))
@@ -433,14 +437,14 @@ class Ui_MainWindow(object):
         self.btnRemoveAdmin.setText(QCoreApplication.translate("MainWindow", u"Remove", None))
         self.btnAddAdmins.setText(QCoreApplication.translate("MainWindow", u"Add", None))
         self.btnExportAdmins.setText(QCoreApplication.translate("MainWindow", u"Export", None))
-        ___qtablewidgetitem10 = self.tableAdmins.horizontalHeaderItem(0)
-        ___qtablewidgetitem10.setText(QCoreApplication.translate("MainWindow", u"Id Admin", None));
-        ___qtablewidgetitem11 = self.tableAdmins.horizontalHeaderItem(1)
-        ___qtablewidgetitem11.setText(QCoreApplication.translate("MainWindow", u"User", None));
-        ___qtablewidgetitem12 = self.tableAdmins.horizontalHeaderItem(2)
-        ___qtablewidgetitem12.setText(QCoreApplication.translate("MainWindow", u"Email", None));
-        ___qtablewidgetitem13 = self.tableAdmins.horizontalHeaderItem(3)
-        ___qtablewidgetitem13.setText(QCoreApplication.translate("MainWindow", u"Password", None));
+        ___qtablewidgetitem11 = self.tableAdmins.horizontalHeaderItem(0)
+        ___qtablewidgetitem11.setText(QCoreApplication.translate("MainWindow", u"Id Admin", None));
+        ___qtablewidgetitem12 = self.tableAdmins.horizontalHeaderItem(1)
+        ___qtablewidgetitem12.setText(QCoreApplication.translate("MainWindow", u"User", None));
+        ___qtablewidgetitem13 = self.tableAdmins.horizontalHeaderItem(2)
+        ___qtablewidgetitem13.setText(QCoreApplication.translate("MainWindow", u"Email", None));
+        ___qtablewidgetitem14 = self.tableAdmins.horizontalHeaderItem(3)
+        ___qtablewidgetitem14.setText(QCoreApplication.translate("MainWindow", u"Password", None));
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"settings", None))
     # retranslateUi
 

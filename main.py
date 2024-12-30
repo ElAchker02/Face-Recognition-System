@@ -1,14 +1,17 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 
 import sys
-from PyQt6.QtWidgets import QMainWindow, QApplication, QLabel, QListWidgetItem,QWidget, QGridLayout,QMessageBox
+from PyQt6.QtWidgets import QMainWindow, QApplication, QLabel, QListWidgetItem,QWidget, QGridLayout,QMessageBox,QFileDialog
 from PyQt6.QtCore import Qt, QSize
 from PyQt6.QtGui import QIcon, QPixmap, QFont
 from PyQt6.QtCore import QPropertyAnimation
 from db_operations import DatabaseManager
 from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem
 from UserCRUD import UserCRUDWindow
-
+from DepartementCRUD import DepartementCRUDWindow
+from AdminsCRUD import AdminCRUDWindow
+import pandas as pd
+import xlsxwriter
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -191,7 +194,7 @@ class Ui_MainWindow(object):
         self.tableLogs.setSelectionMode(QtWidgets.QAbstractItemView.SelectionMode.ExtendedSelection)
         self.tableLogs.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectionBehavior.SelectRows)
         self.tableLogs.setObjectName("tableLogs")
-        self.tableLogs.setColumnCount(3)
+        self.tableLogs.setColumnCount(4)
         self.tableLogs.setRowCount(0)
         item = QtWidgets.QTableWidgetItem()
         self.tableLogs.setHorizontalHeaderItem(0, item)
@@ -199,6 +202,8 @@ class Ui_MainWindow(object):
         self.tableLogs.setHorizontalHeaderItem(1, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableLogs.setHorizontalHeaderItem(2, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableLogs.setHorizontalHeaderItem(3, item)
         self.stackedWidget.addWidget(self.logs_page)
         self.departements_page = QtWidgets.QWidget()
         self.departements_page.setObjectName("departements_page")
@@ -271,31 +276,31 @@ class Ui_MainWindow(object):
         self.btnRefeshAdmins.setText("")
         self.btnRefeshAdmins.setIcon(icon1)
         self.btnRefeshAdmins.setObjectName("btnRefeshAdmins")
-        self.widget = QtWidgets.QWidget(parent=self.frame_5)
-        self.widget.setGeometry(QtCore.QRect(470, 30, 395, 32))
-        self.widget.setObjectName("widget")
-        self.horizontalLayout_4 = QtWidgets.QHBoxLayout(self.widget)
+        self.layoutWidget = QtWidgets.QWidget(parent=self.frame_5)
+        self.layoutWidget.setGeometry(QtCore.QRect(470, 30, 395, 32))
+        self.layoutWidget.setObjectName("layoutWidget")
+        self.horizontalLayout_4 = QtWidgets.QHBoxLayout(self.layoutWidget)
         self.horizontalLayout_4.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
-        self.btnUpdateAdmin = QtWidgets.QPushButton(parent=self.widget)
+        self.btnUpdateAdmin = QtWidgets.QPushButton(parent=self.layoutWidget)
         self.btnUpdateAdmin.setStyleSheet("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 0);")
         self.btnUpdateAdmin.setIcon(icon4)
         self.btnUpdateAdmin.setObjectName("btnUpdateAdmin")
         self.horizontalLayout_4.addWidget(self.btnUpdateAdmin)
-        self.btnRemoveAdmin = QtWidgets.QPushButton(parent=self.widget)
+        self.btnRemoveAdmin = QtWidgets.QPushButton(parent=self.layoutWidget)
         self.btnRemoveAdmin.setStyleSheet("color: rgb(255, 255, 255);\n"
 "background-color: rgb(255, 0, 0);")
         self.btnRemoveAdmin.setIcon(icon5)
         self.btnRemoveAdmin.setObjectName("btnRemoveAdmin")
         self.horizontalLayout_4.addWidget(self.btnRemoveAdmin)
-        self.btnAddAdmins = QtWidgets.QPushButton(parent=self.widget)
+        self.btnAddAdmins = QtWidgets.QPushButton(parent=self.layoutWidget)
         self.btnAddAdmins.setStyleSheet("color: rgb(255, 255, 255);\n"
 "background-color: rgb(85, 170, 255);")
         self.btnAddAdmins.setIcon(icon)
         self.btnAddAdmins.setObjectName("btnAddAdmins")
         self.horizontalLayout_4.addWidget(self.btnAddAdmins)
-        self.btnExportAdmins = QtWidgets.QPushButton(parent=self.widget)
+        self.btnExportAdmins = QtWidgets.QPushButton(parent=self.layoutWidget)
         self.btnExportAdmins.setStyleSheet("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 255, 0);")
         self.btnExportAdmins.setIcon(icon2)
@@ -335,7 +340,7 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -371,8 +376,10 @@ class Ui_MainWindow(object):
         item = self.tableLogs.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "Id log"))
         item = self.tableLogs.horizontalHeaderItem(1)
-        item.setText(_translate("MainWindow", "Timstamp"))
+        item.setText(_translate("MainWindow", "User"))
         item = self.tableLogs.horizontalHeaderItem(2)
+        item.setText(_translate("MainWindow", "Timstamp"))
+        item = self.tableLogs.horizontalHeaderItem(3)
         item.setText(_translate("MainWindow", "Emotion"))
         self.label_6.setText(_translate("MainWindow", "Departements"))
         item = self.tableDepartements.horizontalHeaderItem(0)
@@ -399,7 +406,7 @@ class Ui_MainWindow(object):
         self.label_4.setText(_translate("MainWindow", "settings"))
 
 
-       
+     
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -495,11 +502,29 @@ class MainWindow(QMainWindow):
         self.side_menu.setMaximumWidth(0)
         self.side_menu_icon.setMaximumWidth(60)  # Show icon-only menu
 
+        # Users Actions
         self.ui.btnAddUser.clicked.connect(self.open_user_crud)
         self.ui.btnRefreshUser.clicked.connect(self.load_users_table)
         self.ui.btnRmoveUser.clicked.connect(self.remove_selected_users)
         self.ui.btnUpdateUser.clicked.connect(self.edit_selected_user)
 
+        # Departements Actions
+        self.ui.btnRemoveDep.clicked.connect(self.remove_selected_deps)
+        self.ui.btnRefreshDep.clicked.connect(self.load_departments_table)
+        self.ui.btnAddDepartements.clicked.connect(self.open_dep_crud)
+        self.ui.btnUpdateDep.clicked.connect(self.edit_selected_dep)        
+
+        # Admins Actions
+        self.ui.btnRemoveAdmin.clicked.connect(self.remove_selected_admins)
+        self.ui.btnRefeshAdmins.clicked.connect(self.load_admins_table)
+        self.ui.btnAddAdmins.clicked.connect(self.open_admins_crud)
+        self.ui.btnUpdateAdmin.clicked.connect(self.edit_selected_admin)  
+
+        # Excel Export Actions
+        self.ui.btnExportUser.clicked.connect(lambda: self.export_table_to_excel(self.ui.tableUsers))
+        self.ui.btnExportLogs.clicked.connect(lambda: self.export_table_to_excel(self.ui.tableLogs))
+        self.ui.btnExportAdmins.clicked.connect(lambda: self.export_table_to_excel(self.ui.tableAdmins))
+        self.ui.btnExportDepartements.clicked.connect(lambda: self.export_table_to_excel(self.ui.tableDepartements))
 
 
     def init_signal_slot(self):
@@ -520,8 +545,51 @@ class MainWindow(QMainWindow):
 
 
 
+
+
         self.menu_btn.toggled.connect(self.button_icon_change)
 
+
+    def export_table_to_excel(self, table_widget):
+        try:
+            # Open file dialog to select the save location
+            file_path, _ = QFileDialog.getSaveFileName(
+                None, 
+                "Save File", 
+                "", 
+                "Excel Files (*.xlsx)"
+            )
+            if not file_path:  # If the user cancels the dialog, exit the function
+                return
+
+            # Add ".xlsx" extension if not provided
+            if not file_path.endswith('.xlsx'):
+                file_path += '.xlsx'
+
+            # Create an Excel workbook and worksheet
+            workbook = xlsxwriter.Workbook(file_path)
+            worksheet = workbook.add_worksheet()
+
+            # Write the table headers
+            for col in range(table_widget.columnCount()):
+                header = table_widget.horizontalHeaderItem(col).text()
+                worksheet.write(0, col, header)
+
+            # Write the table data
+            for row in range(table_widget.rowCount()):
+                for col in range(table_widget.columnCount()):
+                    cell_item = table_widget.item(row, col)
+                    if cell_item is not None:
+                        worksheet.write(row + 1, col, cell_item.text())
+
+            workbook.close()  # Save the workbook
+
+            # Show a success message
+            QMessageBox.information(None, "Success", f"Table exported successfully to {file_path}!")
+
+        except Exception as e:
+            # Show an error message if something goes wrong
+            QMessageBox.critical(None, "Error", f"An error occurred: {str(e)}")
 
     def animate_sidebar(self, expand):
         if expand:  # Expand the sidebar
@@ -629,6 +697,8 @@ class MainWindow(QMainWindow):
         self.db_manager.close_connection()
         super().closeEvent(event)
 
+    # Users start
+
     def remove_selected_users(self):
         selected_rows = self.ui.tableUsers.selectionModel().selectedRows()  # Get all selected rows
         if not selected_rows:  # No rows selected
@@ -690,7 +760,115 @@ class MainWindow(QMainWindow):
 
         self.open_user_crud(mode="edit", user_data=user_data)
     
+    # Users end
 
+    # Departement start
+    def remove_selected_deps(self):
+        selected_rows = self.ui.tableDepartements.selectionModel().selectedRows()  # Get all selected rows
+        if not selected_rows:  # No rows selected
+            QMessageBox.warning(self, "Selection Error", "Please select one or more rows first.")
+            return
+
+        # Confirm deletion
+        confirmation = QMessageBox.question(
+            self, 
+            "Confirm Deletion", 
+            f"Are you sure you want to delete {len(selected_rows)} departement(s)?",
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
+        )
+        if confirmation == QMessageBox.StandardButton.No:
+            return
+
+        dep_ids = []
+        for row in selected_rows:
+            row_index = row.row()
+            dep_id = self.ui.tableDepartements.item(row_index, 0).text()  # Assuming ID is in column 0
+            dep_ids.append(dep_id)
+
+        # Call the database manager to delete users
+        self.db_manager.delete_department(dep_ids)  
+
+        # Reload the table after deletion
+        self.load_departments_table()
+
+    def open_dep_crud(self, mode="add", dep_data=None):
+        self.dep_crud_window = DepartementCRUDWindow(self)
+        self.dep_crud_window.stat = "add"
+        if mode == "edit" and dep_data:
+            self.dep_crud_window.stat = "edit"
+            self.dep_crud_window.populate_form(dep_data)
+        
+        self.dep_crud_window.show()
+
+    def edit_selected_dep(self):
+        selected_row = self.ui.tableDepartements.currentRow()
+        if selected_row == -1:
+            QMessageBox.warning(self, "Selection Error", "Please select a user to edit.")
+            return
+
+        dep_data = {
+            "id_dep" : self.ui.tableDepartements.item(selected_row, 0).text(),
+            "name": self.ui.tableDepartements.item(selected_row, 1).text(),
+        }
+
+        self.open_dep_crud(mode="edit", dep_data=dep_data)
+
+    # Departement end
+
+    # Admins Start
+    def remove_selected_admins(self):
+        selected_rows = self.ui.tableAdmins.selectionModel().selectedRows()  # Get all selected rows
+        if not selected_rows:  # No rows selected
+            QMessageBox.warning(self, "Selection Error", "Please select one or more rows first.")
+            return
+
+        # Confirm deletion
+        confirmation = QMessageBox.question(
+            self, 
+            "Confirm Deletion", 
+            f"Are you sure you want to delete {len(selected_rows)} Admin(s)?",
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
+        )
+        if confirmation == QMessageBox.StandardButton.No:
+            return
+
+        admin_ids = []
+        for row in selected_rows:
+            row_index = row.row()
+            admin_id = self.ui.tableAdmins.item(row_index, 0).text()  # Assuming ID is in column 0
+            admin_ids.append(admin_id)
+
+        # Call the database manager to delete users
+        self.db_manager.delete_admins(admin_ids)  
+
+        # Reload the table after deletion
+        self.load_admins_table()
+
+    def open_admins_crud(self, mode="add", admin_data=None):
+        self.admin_crud_window = AdminCRUDWindow(self)
+        self.admin_crud_window.stat = "add"
+        if mode == "edit" and admin_data:
+            self.admin_crud_window.stat = "edit"
+            self.admin_crud_window.populate_form(admin_data)
+        
+        self.admin_crud_window.show()
+
+    def edit_selected_admin(self):
+        selected_row = self.ui.tableAdmins.currentRow()
+        if selected_row == -1:
+            QMessageBox.warning(self, "Selection Error", "Please select a user to edit.")
+            return
+
+        admin_data = {
+            "admin_id" : self.ui.tableAdmins.item(selected_row, 0).text(),
+            "user": self.ui.tableAdmins.item(selected_row, 1).text(),
+            "email": self.ui.tableAdmins.item(selected_row, 2).text(),
+            "password": self.ui.tableAdmins.item(selected_row, 3).text(),
+        }
+
+        self.open_admins_crud(mode="edit", admin_data=admin_data)
+
+    # Admins end
 
 
 if __name__ == "__main__":
