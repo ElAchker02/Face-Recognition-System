@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1120</width>
-    <height>766</height>
+    <width>1581</width>
+    <height>844</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,6 +15,45 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
+    <item row="1" column="1">
+     <widget class="QListWidget" name="listWidget">
+      <property name="maximumSize">
+       <size>
+        <width>200</width>
+        <height>16777215</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="2">
+     <widget class="QFrame" name="frame_2">
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QLabel" name="admin">
+         <property name="text">
+          <string>Amine</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="timestamps">
+         <property name="text">
+          <string>timestamps</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
     <item row="0" column="0" colspan="2">
      <widget class="QFrame" name="title_frame">
       <property name="frameShape">
@@ -48,35 +87,6 @@
       </layout>
      </widget>
     </item>
-    <item row="0" column="2">
-     <widget class="QFrame" name="frame_2">
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
-       <item>
-        <widget class="QLabel" name="admin">
-         <property name="text">
-          <string>Amine</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="timestamps">
-         <property name="text">
-          <string>timestamps</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
     <item row="1" column="0">
      <widget class="QListWidget" name="listWidget_icon">
       <property name="maximumSize">
@@ -90,7 +100,7 @@
     <item row="1" column="2">
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="dashboard_page"/>
       <widget class="QWidget" name="Users_page">
@@ -99,9 +109,15 @@
          <rect>
           <x>10</x>
           <y>80</y>
-          <width>821</width>
-          <height>531</height>
+          <width>1271</width>
+          <height>621</height>
          </rect>
+        </property>
+        <property name="editTriggers">
+         <set>QAbstractItemView::NoEditTriggers</set>
+        </property>
+        <property name="selectionBehavior">
+         <enum>QAbstractItemView::SelectRows</enum>
         </property>
         <column>
          <property name="text">
@@ -134,7 +150,7 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>821</width>
+          <width>1301</width>
           <height>88</height>
          </rect>
         </property>
@@ -257,7 +273,7 @@ background-color: rgb(85, 170, 255);</string>
         <widget class="QPushButton" name="btnExportUser">
          <property name="geometry">
           <rect>
-           <x>710</x>
+           <x>1180</x>
            <y>30</y>
            <width>93</width>
            <height>30</height>
@@ -296,6 +312,48 @@ background-color: rgb(85, 170, 255);</string>
            <normaloff>../icon/search.png</normaloff>../icon/search.png</iconset>
          </property>
         </widget>
+        <widget class="QPushButton" name="btnUpdateUser">
+         <property name="geometry">
+          <rect>
+           <x>720</x>
+           <y>30</y>
+           <width>93</width>
+           <height>30</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 0);</string>
+         </property>
+         <property name="text">
+          <string>Update</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../icon/updae.png</normaloff>../icon/updae.png</iconset>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="btnRmoveUser">
+         <property name="geometry">
+          <rect>
+           <x>850</x>
+           <y>30</y>
+           <width>93</width>
+           <height>30</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(255, 0, 0);</string>
+         </property>
+         <property name="text">
+          <string>Remove</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../icon/trash.png</normaloff>../icon/trash.png</iconset>
+         </property>
+        </widget>
        </widget>
       </widget>
       <widget class="QWidget" name="logs_page">
@@ -304,7 +362,7 @@ background-color: rgb(85, 170, 255);</string>
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>821</width>
+          <width>1281</width>
           <height>88</height>
          </rect>
         </property>
@@ -353,7 +411,7 @@ background-color: rgb(85, 170, 255);</string>
         <widget class="QPushButton" name="btnExportLogs">
          <property name="geometry">
           <rect>
-           <x>710</x>
+           <x>1180</x>
            <y>30</y>
            <width>93</width>
            <height>30</height>
@@ -408,9 +466,18 @@ background-color: rgb(85, 170, 255);</string>
          <rect>
           <x>0</x>
           <y>90</y>
-          <width>821</width>
+          <width>1281</width>
           <height>541</height>
          </rect>
+        </property>
+        <property name="editTriggers">
+         <set>QAbstractItemView::NoEditTriggers</set>
+        </property>
+        <property name="selectionMode">
+         <enum>QAbstractItemView::ExtendedSelection</enum>
+        </property>
+        <property name="selectionBehavior">
+         <enum>QAbstractItemView::SelectRows</enum>
         </property>
         <column>
          <property name="text">
@@ -435,8 +502,8 @@ background-color: rgb(85, 170, 255);</string>
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>821</width>
-          <height>88</height>
+          <width>530</width>
+          <height>54</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -448,59 +515,37 @@ background-color: rgb(85, 170, 255);</string>
         <property name="frameShadow">
          <enum>QFrame::Raised</enum>
         </property>
+        <widget class="QPushButton" name="btnRefreshDep">
+         <property name="geometry">
+          <rect>
+           <x>12</x>
+           <y>12</y>
+           <width>33</width>
+           <height>29</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(85, 170, 255);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../icon/ref.png</normaloff>../icon/ref.png</iconset>
+         </property>
+        </widget>
         <widget class="QLabel" name="label_6">
          <property name="geometry">
           <rect>
-           <x>10</x>
-           <y>30</y>
-           <width>131</width>
-           <height>21</height>
+           <x>60</x>
+           <y>10</y>
+           <width>250</width>
+           <height>30</height>
           </rect>
          </property>
          <property name="text">
           <string>Departements</string>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="btnAddDepartements">
-         <property name="geometry">
-          <rect>
-           <x>593</x>
-           <y>30</y>
-           <width>93</width>
-           <height>30</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(85, 170, 255);</string>
-         </property>
-         <property name="text">
-          <string>Add</string>
-         </property>
-         <property name="icon">
-          <iconset>
-           <normaloff>../icon/add.png</normaloff>../icon/add.png</iconset>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="btnExportDepartements">
-         <property name="geometry">
-          <rect>
-           <x>710</x>
-           <y>30</y>
-           <width>93</width>
-           <height>30</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(0, 255, 0);</string>
-         </property>
-         <property name="text">
-          <string>Export</string>
-         </property>
-         <property name="icon">
-          <iconset>
-           <normaloff>../icon/export.png</normaloff>../icon/export.png</iconset>
          </property>
         </widget>
        </widget>
@@ -509,9 +554,18 @@ background-color: rgb(0, 255, 0);</string>
          <rect>
           <x>0</x>
           <y>90</y>
-          <width>821</width>
+          <width>1281</width>
           <height>541</height>
          </rect>
+        </property>
+        <property name="editTriggers">
+         <set>QAbstractItemView::NoEditTriggers</set>
+        </property>
+        <property name="selectionMode">
+         <enum>QAbstractItemView::ExtendedSelection</enum>
+        </property>
+        <property name="selectionBehavior">
+         <enum>QAbstractItemView::SelectRows</enum>
         </property>
         <column>
          <property name="text">
@@ -524,6 +578,90 @@ background-color: rgb(0, 255, 0);</string>
          </property>
         </column>
        </widget>
+       <widget class="QPushButton" name="btnUpdateDep">
+        <property name="geometry">
+         <rect>
+          <x>440</x>
+          <y>10</y>
+          <width>93</width>
+          <height>29</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 0);</string>
+        </property>
+        <property name="text">
+         <string>Update</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>../icon/updae.png</normaloff>../icon/updae.png</iconset>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnRemoveDep">
+        <property name="geometry">
+         <rect>
+          <x>564</x>
+          <y>10</y>
+          <width>93</width>
+          <height>29</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(255, 0, 0);</string>
+        </property>
+        <property name="text">
+         <string>Remove</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>../icon/trash.png</normaloff>../icon/trash.png</iconset>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnAddDepartements">
+        <property name="geometry">
+         <rect>
+          <x>689</x>
+          <y>10</y>
+          <width>93</width>
+          <height>29</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(85, 170, 255);</string>
+        </property>
+        <property name="text">
+         <string>Add</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>../icon/add.png</normaloff>../icon/add.png</iconset>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnExportDepartements">
+        <property name="geometry">
+         <rect>
+          <x>813</x>
+          <y>10</y>
+          <width>93</width>
+          <height>29</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(0, 255, 0);</string>
+        </property>
+        <property name="text">
+         <string>Export</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>../icon/export.png</normaloff>../icon/export.png</iconset>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="admins_page">
        <widget class="QFrame" name="frame_5">
@@ -531,7 +669,7 @@ background-color: rgb(0, 255, 0);</string>
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>821</width>
+          <width>1281</width>
           <height>88</height>
          </rect>
         </property>
@@ -547,7 +685,7 @@ background-color: rgb(0, 255, 0);</string>
         <widget class="QLabel" name="label_5">
          <property name="geometry">
           <rect>
-           <x>10</x>
+           <x>60</x>
            <y>30</y>
            <width>71</width>
            <height>21</height>
@@ -557,47 +695,97 @@ background-color: rgb(0, 255, 0);</string>
           <string>Admins</string>
          </property>
         </widget>
-        <widget class="QPushButton" name="btnAddAdmins">
+        <widget class="QPushButton" name="btnRefeshAdmins">
          <property name="geometry">
           <rect>
-           <x>593</x>
+           <x>0</x>
            <y>30</y>
-           <width>93</width>
-           <height>30</height>
+           <width>33</width>
+           <height>29</height>
           </rect>
          </property>
          <property name="styleSheet">
-          <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(85, 170, 255);</string>
+          <string notr="true">background-color: rgb(85, 170, 255);</string>
          </property>
          <property name="text">
-          <string>Add</string>
+          <string/>
          </property>
          <property name="icon">
           <iconset>
-           <normaloff>../icon/add.png</normaloff>../icon/add.png</iconset>
+           <normaloff>../icon/ref.png</normaloff>../icon/ref.png</iconset>
          </property>
         </widget>
-        <widget class="QPushButton" name="btnExportAdmins">
+        <widget class="QWidget" name="">
          <property name="geometry">
           <rect>
-           <x>710</x>
+           <x>470</x>
            <y>30</y>
-           <width>93</width>
-           <height>30</height>
+           <width>395</width>
+           <height>32</height>
           </rect>
          </property>
-         <property name="styleSheet">
-          <string notr="true">color: rgb(255, 255, 255);
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <item>
+           <widget class="QPushButton" name="btnUpdateAdmin">
+            <property name="styleSheet">
+             <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 0);</string>
+            </property>
+            <property name="text">
+             <string>Update</string>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>../icon/updae.png</normaloff>../icon/updae.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnRemoveAdmin">
+            <property name="styleSheet">
+             <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(255, 0, 0);</string>
+            </property>
+            <property name="text">
+             <string>Remove</string>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>../icon/trash.png</normaloff>../icon/trash.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnAddAdmins">
+            <property name="styleSheet">
+             <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(85, 170, 255);</string>
+            </property>
+            <property name="text">
+             <string>Add</string>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>../icon/add.png</normaloff>../icon/add.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnExportAdmins">
+            <property name="styleSheet">
+             <string notr="true">color: rgb(255, 255, 255);
 background-color: rgb(0, 255, 0);</string>
-         </property>
-         <property name="text">
-          <string>Export</string>
-         </property>
-         <property name="icon">
-          <iconset>
-           <normaloff>../icon/export.png</normaloff>../icon/export.png</iconset>
-         </property>
+            </property>
+            <property name="text">
+             <string>Export</string>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>../icon/export.png</normaloff>../icon/export.png</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </widget>
        </widget>
        <widget class="QTableWidget" name="tableAdmins">
@@ -605,9 +793,18 @@ background-color: rgb(0, 255, 0);</string>
          <rect>
           <x>0</x>
           <y>90</y>
-          <width>821</width>
-          <height>541</height>
+          <width>1281</width>
+          <height>621</height>
          </rect>
+        </property>
+        <property name="editTriggers">
+         <set>QAbstractItemView::NoEditTriggers</set>
+        </property>
+        <property name="selectionMode">
+         <enum>QAbstractItemView::ExtendedSelection</enum>
+        </property>
+        <property name="selectionBehavior">
+         <enum>QAbstractItemView::SelectRows</enum>
         </property>
         <column>
          <property name="text">
@@ -648,16 +845,6 @@ background-color: rgb(0, 255, 0);</string>
       </widget>
      </widget>
     </item>
-    <item row="1" column="1">
-     <widget class="QListWidget" name="listWidget">
-      <property name="maximumSize">
-       <size>
-        <width>200</width>
-        <height>16777215</height>
-       </size>
-      </property>
-     </widget>
-    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -665,7 +852,7 @@ background-color: rgb(0, 255, 0);</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1120</width>
+     <width>1581</width>
      <height>26</height>
     </rect>
    </property>
