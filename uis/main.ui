@@ -15,6 +15,16 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
+    <item row="1" column="0">
+     <widget class="QListWidget" name="listWidget_icon">
+      <property name="maximumSize">
+       <size>
+        <width>50</width>
+        <height>16777215</height>
+       </size>
+      </property>
+     </widget>
+    </item>
     <item row="1" column="1">
      <widget class="QListWidget" name="listWidget">
       <property name="maximumSize">
@@ -87,20 +97,10 @@
       </layout>
      </widget>
     </item>
-    <item row="1" column="0">
-     <widget class="QListWidget" name="listWidget_icon">
-      <property name="maximumSize">
-       <size>
-        <width>50</width>
-        <height>16777215</height>
-       </size>
-      </property>
-     </widget>
-    </item>
     <item row="1" column="2">
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="dashboard_page"/>
       <widget class="QWidget" name="Users_page">
@@ -121,27 +121,27 @@
         </property>
         <column>
          <property name="text">
-          <string>id</string>
+          <string>Id</string>
          </property>
         </column>
         <column>
          <property name="text">
-          <string>name</string>
+          <string>Name</string>
          </property>
         </column>
         <column>
          <property name="text">
-          <string>photo</string>
+          <string>Photo</string>
          </property>
         </column>
         <column>
          <property name="text">
-          <string>departement</string>
+          <string>Departement</string>
          </property>
         </column>
         <column>
          <property name="text">
-          <string>role</string>
+          <string>Role</string>
          </property>
         </column>
        </widget>
@@ -429,7 +429,7 @@ background-color: rgb(0, 255, 0);</string>
            <normaloff>../icon/export.png</normaloff>../icon/export.png</iconset>
          </property>
         </widget>
-        <widget class="QDateEdit" name="dateEdit">
+        <widget class="QDateEdit" name="dateEdit_1">
          <property name="geometry">
           <rect>
            <x>230</x>
@@ -442,7 +442,7 @@ background-color: rgb(0, 255, 0);</string>
         <widget class="QPushButton" name="btnSearchLogs">
          <property name="geometry">
           <rect>
-           <x>370</x>
+           <x>580</x>
            <y>30</y>
            <width>41</width>
            <height>30</height>
@@ -458,6 +458,16 @@ background-color: rgb(85, 170, 255);</string>
          <property name="icon">
           <iconset>
            <normaloff>../icon/search.png</normaloff>../icon/search.png</iconset>
+         </property>
+        </widget>
+        <widget class="QDateEdit" name="dateEdit_2">
+         <property name="geometry">
+          <rect>
+           <x>390</x>
+           <y>30</y>
+           <width>110</width>
+           <height>22</height>
+          </rect>
          </property>
         </widget>
        </widget>
@@ -834,11 +844,160 @@ background-color: rgb(0, 255, 0);</string>
        </widget>
       </widget>
       <widget class="QWidget" name="settings_page">
+       <widget class="QTableWidget" name="tableFeddback">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>100</y>
+          <width>1281</width>
+          <height>541</height>
+         </rect>
+        </property>
+        <property name="editTriggers">
+         <set>QAbstractItemView::NoEditTriggers</set>
+        </property>
+        <property name="selectionMode">
+         <enum>QAbstractItemView::ExtendedSelection</enum>
+        </property>
+        <property name="selectionBehavior">
+         <enum>QAbstractItemView::SelectRows</enum>
+        </property>
+        <column>
+         <property name="text">
+          <string>id Feedback</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>id Log</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Prediction state</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Reel User</string>
+         </property>
+        </column>
+       </widget>
+       <widget class="QPushButton" name="btnRefreshFeedback">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>40</y>
+          <width>41</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(85, 170, 255);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>../icon/ref.png</normaloff>../icon/ref.png</iconset>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnSearchFeedback">
+        <property name="geometry">
+         <rect>
+          <x>510</x>
+          <y>40</y>
+          <width>41</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(85, 170, 255);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>../icon/search.png</normaloff>../icon/search.png</iconset>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnExporFeedback">
+        <property name="geometry">
+         <rect>
+          <x>1190</x>
+          <y>40</y>
+          <width>93</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(0, 255, 0);</string>
+        </property>
+        <property name="text">
+         <string>Export</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>../icon/export.png</normaloff>../icon/export.png</iconset>
+        </property>
+       </widget>
        <widget class="QLabel" name="label_4">
         <property name="geometry">
          <rect>
-          <x>350</x>
-          <y>280</y>
+          <x>80</x>
+          <y>40</y>
+          <width>71</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Feed back</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_8">
+        <property name="geometry">
+         <rect>
+          <x>240</x>
+          <y>40</y>
+          <width>121</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Prediction State :</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="cmbFeedback">
+        <property name="geometry">
+         <rect>
+          <x>380</x>
+          <y>40</y>
+          <width>73</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>True</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>False</string>
+         </property>
+        </item>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="page">
+       <widget class="QLabel" name="label">
+        <property name="geometry">
+         <rect>
+          <x>490</x>
+          <y>240</y>
           <width>55</width>
           <height>16</height>
          </rect>

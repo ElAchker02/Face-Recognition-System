@@ -1,83 +1,74 @@
-from PySide6.QtWidgets import QApplication, QMainWindow, QFrame, QVBoxLayout, QPushButton, QStackedWidget, QLabel, QHBoxLayout, QWidget
-from PySide6.QtCore import Qt
+from PyQt5.QtWidgets import QApplication, QMainWindow, QTableView, QVBoxLayout, QWidget, QLineEdit, QComboBox
+from PyQt5.QtCore import QSortFilterProxyModel, Qt
+from PyQt5.QtGui import QStandardItemModel, QStandardItem
+
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Main Interface")
 
-        # Create the central widget
-        central_widget = QWidget(self)
-        central_layout = QHBoxLayout(central_widget)
+        # Initialisation des widgets
+        self.setWindowTitle("Recherche dans le tableau")
+        self.resize(800, 600)
 
-        # Sidebar (fixed on the left)
-        self.sidebar = QFrame(self)
-        self.sidebar.setFrameShape(QFrame.StyledPanel)
-        self.sidebar.setFixedWidth(200)  # Set the sidebar to a fixed width
-        self.sidebar_layout = QVBoxLayout(self.sidebar)
+        self.table_view = QTableView(self)
+        self.search_bar = QLineEdit(self)
+        self.combo_box = QComboBox(self)
 
-        # Add buttons to sidebar
-        self.btnDashboard = QPushButton("Dashboard", self)
-        self.btnManageEmployees = QPushButton("Manage Employees", self)
-        self.btnLogs = QPushButton("Logs", self)
-        self.btnDepartments = QPushButton("Departments", self)
-        self.btnAdmins = QPushButton("Admins", self)
-        self.btnSettings = QPushButton("Settings", self)
+        # Configuration des colonnes à rechercher
+        self.combo_box.addItems(["Nom", "Prénom", "Email"])  # Les colonnes que tu veux rechercher
 
-        self.sidebar_layout.addWidget(self.btnDashboard)
-        self.sidebar_layout.addWidget(self.btnManageEmployees)
-        self.sidebar_layout.addWidget(self.btnLogs)
-        self.sidebar_layout.addWidget(self.btnDepartments)
-        self.sidebar_layout.addWidget(self.btnAdmins)
-        self.sidebar_layout.addWidget(self.btnSettings)
+        # Layout principal
+        layout = QVBoxLayout()
+        layout.addWidget(self.combo_box)
+        layout.addWidget(self.search_bar)
+        layout.addWidget(self.table_view)
 
-        # Create the main content area using QStackedWidget
-        self.main_content = QStackedWidget(self)
+        container = QWidget()
+        container.setLayout(layout)
+        self.setCentralWidget(container)
 
-        # Create pages for main content
-        self.dashboard_page = QWidget()
-        self.manage_employees_page = QWidget()
-        self.logs_page = QWidget()
+        # Configuration du modèle de données
+        self.model = QStandardItemModel(0, 3, self)  # 3 colonnes
+        self.model.setHorizontalHeaderLabels(["Nom", "Prénom", "Email"])
+        self.populate_table()
 
-        # Add pages to the QStackedWidget
-        self.main_content.addWidget(self.dashboard_page)
-        self.main_content.addWidget(self.manage_employees_page)
-        self.main_content.addWidget(self.logs_page)
+        # Modèle de filtre
+        self.proxy_model = QSortFilterProxyModel(self)
+        self.proxy_model.setSourceModel(self.model)
+        # self.proxy_model.setFilterCaseSensitivity(Qt.CaseInsensitive)  # Insensible à la casse
+        # self.proxy_model.setFilterKeyColumn(0)  # Par défaut, colonne 0 (Nom)
 
-        # Set initial page
-        self.main_content.setCurrentWidget(self.dashboard_page)
+        # Lier le modèle au tableau
+        self.table_view.setModel(self.proxy_model)
 
-        # Create header
-        self.header = QFrame(self)
-        self.header_layout = QHBoxLayout(self.header)
-        self.admin_name_label = QLabel("Admin: John Doe", self)
-        self.timestamp_label = QLabel("Timestamp: 12/12/2024", self)
-        self.header_layout.addWidget(self.admin_name_label)
-        self.header_layout.addWidget(self.timestamp_label)
+        # Connexions
+        self.search_bar.textChanged.connect(self.update_filter)
+        self.combo_box.currentIndexChanged.connect(self.update_filter_column)
 
-        # Add sidebar, header, and main content to the layout
-        central_layout.addWidget(self.sidebar)
-        central_layout.addWidget(self.main_content)
+    def populate_table(self):
+        """Ajouter des données au tableau."""
+        data = [
+            ["Amine", "El Amrani", "amine.elamrani@example.com"],
+            ["Yassine", "Benzakour", "yassine.benzakour@example.com"],
+            ["Sarah", "Belkadi", "sarah.belkadi@example.com"],
+            ["Hajar", "El Idrissi", "hajar.elidrissi@example.com"]
+        ]
+        for row in data:
+            items = [QStandardItem(field) for field in row]
+            self.model.appendRow(items)
 
-        # Set central widget
-        self.setCentralWidget(central_widget)
+    def update_filter(self, text):
+        """Met à jour le filtre en fonction du texte entré."""
+        self.proxy_model.setFilterFixedString(text)
 
-        # Connect buttons to switch content
-        self.btnDashboard.clicked.connect(self.show_dashboard)
-        self.btnManageEmployees.clicked.connect(self.show_manage_employees)
-        self.btnLogs.clicked.connect(self.show_logs)
+    def update_filter_column(self, index):
+        """Met à jour la colonne à filtrer en fonction de la sélection dans la ComboBox."""
+        self.proxy_model.setFilterKeyColumn(index)
 
-    def show_dashboard(self):
-        self.main_content.setCurrentWidget(self.dashboard_page)
-
-    def show_manage_employees(self):
-        self.main_content.setCurrentWidget(self.manage_employees_page)
-
-    def show_logs(self):
-        self.main_content.setCurrentWidget(self.logs_page)
 
 if __name__ == "__main__":
     app = QApplication([])
     window = MainWindow()
     window.show()
-    app.exec()
+    app.exec_()

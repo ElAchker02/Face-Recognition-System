@@ -146,6 +146,12 @@ class DatabaseManager:
         self.cursor.execute(query, (dep_ids))
         self.connection.commit()
 
+    def fetch_feedback(self):
+        """Read all feedbacks."""
+        query = "SELECT * FROM Feedback"
+        self.cursor.execute(query)
+        return self.cursor.fetchall()
+
     def close_connection(self):
         """Close the database connection."""
         self.connection.close()

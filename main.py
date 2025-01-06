@@ -2,7 +2,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 
 import sys
 from PyQt6.QtWidgets import QMainWindow, QApplication, QLabel, QListWidgetItem,QWidget, QGridLayout,QMessageBox,QFileDialog
-from PyQt6.QtCore import Qt, QSize
+from PyQt6.QtCore import Qt, QSize,QSortFilterProxyModel
 from PyQt6.QtGui import QIcon, QPixmap, QFont
 from PyQt6.QtCore import QPropertyAnimation
 from db_operations import DatabaseManager
@@ -12,6 +12,9 @@ from DepartementCRUD import DepartementCRUDWindow
 from AdminsCRUD import AdminCRUDWindow
 import pandas as pd
 import xlsxwriter
+from datetime import datetime
+from PyQt5.QtGui import QStandardItemModel, QStandardItem
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -21,6 +24,10 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
         self.gridLayout.setObjectName("gridLayout")
+        self.listWidget_icon = QtWidgets.QListWidget(parent=self.centralwidget)
+        self.listWidget_icon.setMaximumSize(QtCore.QSize(50, 16777215))
+        self.listWidget_icon.setObjectName("listWidget_icon")
+        self.gridLayout.addWidget(self.listWidget_icon, 1, 0, 1, 1)
         self.listWidget = QtWidgets.QListWidget(parent=self.centralwidget)
         self.listWidget.setMaximumSize(QtCore.QSize(200, 16777215))
         self.listWidget.setObjectName("listWidget")
@@ -55,10 +62,6 @@ class Ui_MainWindow(object):
         self.pushButton.setObjectName("pushButton")
         self.horizontalLayout.addWidget(self.pushButton)
         self.gridLayout.addWidget(self.title_frame, 0, 0, 1, 2)
-        self.listWidget_icon = QtWidgets.QListWidget(parent=self.centralwidget)
-        self.listWidget_icon.setMaximumSize(QtCore.QSize(50, 16777215))
-        self.listWidget_icon.setObjectName("listWidget_icon")
-        self.gridLayout.addWidget(self.listWidget_icon, 1, 0, 1, 1)
         self.stackedWidget = QtWidgets.QStackedWidget(parent=self.centralwidget)
         self.stackedWidget.setObjectName("stackedWidget")
         self.dashboard_page = QtWidgets.QWidget()
@@ -178,16 +181,19 @@ class Ui_MainWindow(object):
 "background-color: rgb(0, 255, 0);")
         self.btnExportLogs.setIcon(icon2)
         self.btnExportLogs.setObjectName("btnExportLogs")
-        self.dateEdit = QtWidgets.QDateEdit(parent=self.frame_3)
-        self.dateEdit.setGeometry(QtCore.QRect(230, 30, 110, 22))
-        self.dateEdit.setObjectName("dateEdit")
+        self.dateEdit_1 = QtWidgets.QDateEdit(parent=self.frame_3)
+        self.dateEdit_1.setGeometry(QtCore.QRect(230, 30, 110, 22))
+        self.dateEdit_1.setObjectName("dateEdit_1")
         self.btnSearchLogs = QtWidgets.QPushButton(parent=self.frame_3)
-        self.btnSearchLogs.setGeometry(QtCore.QRect(370, 30, 41, 30))
+        self.btnSearchLogs.setGeometry(QtCore.QRect(580, 30, 41, 30))
         self.btnSearchLogs.setStyleSheet("color: rgb(255, 255, 255);\n"
 "background-color: rgb(85, 170, 255);")
         self.btnSearchLogs.setText("")
         self.btnSearchLogs.setIcon(icon3)
         self.btnSearchLogs.setObjectName("btnSearchLogs")
+        self.dateEdit_2 = QtWidgets.QDateEdit(parent=self.frame_3)
+        self.dateEdit_2.setGeometry(QtCore.QRect(390, 30, 110, 22))
+        self.dateEdit_2.setObjectName("dateEdit_2")
         self.tableLogs = QtWidgets.QTableWidget(parent=self.logs_page)
         self.tableLogs.setGeometry(QtCore.QRect(0, 90, 1281, 541))
         self.tableLogs.setEditTriggers(QtWidgets.QAbstractItemView.EditTrigger.NoEditTriggers)
@@ -325,10 +331,59 @@ class Ui_MainWindow(object):
         self.stackedWidget.addWidget(self.admins_page)
         self.settings_page = QtWidgets.QWidget()
         self.settings_page.setObjectName("settings_page")
+        self.tableFeddback = QtWidgets.QTableWidget(parent=self.settings_page)
+        self.tableFeddback.setGeometry(QtCore.QRect(10, 100, 1281, 541))
+        self.tableFeddback.setEditTriggers(QtWidgets.QAbstractItemView.EditTrigger.NoEditTriggers)
+        self.tableFeddback.setSelectionMode(QtWidgets.QAbstractItemView.SelectionMode.ExtendedSelection)
+        self.tableFeddback.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectionBehavior.SelectRows)
+        self.tableFeddback.setObjectName("tableFeddback")
+        self.tableFeddback.setColumnCount(4)
+        self.tableFeddback.setRowCount(0)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableFeddback.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableFeddback.setHorizontalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableFeddback.setHorizontalHeaderItem(2, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableFeddback.setHorizontalHeaderItem(3, item)
+        self.btnRefreshFeedback = QtWidgets.QPushButton(parent=self.settings_page)
+        self.btnRefreshFeedback.setGeometry(QtCore.QRect(20, 40, 41, 30))
+        self.btnRefreshFeedback.setStyleSheet("background-color: rgb(85, 170, 255);")
+        self.btnRefreshFeedback.setText("")
+        self.btnRefreshFeedback.setIcon(icon1)
+        self.btnRefreshFeedback.setObjectName("btnRefreshFeedback")
+        self.btnSearchFeedback = QtWidgets.QPushButton(parent=self.settings_page)
+        self.btnSearchFeedback.setGeometry(QtCore.QRect(510, 40, 41, 30))
+        self.btnSearchFeedback.setStyleSheet("color: rgb(255, 255, 255);\n"
+"background-color: rgb(85, 170, 255);")
+        self.btnSearchFeedback.setText("")
+        self.btnSearchFeedback.setIcon(icon3)
+        self.btnSearchFeedback.setObjectName("btnSearchFeedback")
+        self.btnExporFeedback = QtWidgets.QPushButton(parent=self.settings_page)
+        self.btnExporFeedback.setGeometry(QtCore.QRect(1190, 40, 93, 30))
+        self.btnExporFeedback.setStyleSheet("color: rgb(255, 255, 255);\n"
+"background-color: rgb(0, 255, 0);")
+        self.btnExporFeedback.setIcon(icon2)
+        self.btnExporFeedback.setObjectName("btnExporFeedback")
         self.label_4 = QtWidgets.QLabel(parent=self.settings_page)
-        self.label_4.setGeometry(QtCore.QRect(350, 280, 55, 16))
+        self.label_4.setGeometry(QtCore.QRect(80, 40, 71, 21))
         self.label_4.setObjectName("label_4")
+        self.label_8 = QtWidgets.QLabel(parent=self.settings_page)
+        self.label_8.setGeometry(QtCore.QRect(240, 40, 121, 16))
+        self.label_8.setObjectName("label_8")
+        self.cmbFeedback = QtWidgets.QComboBox(parent=self.settings_page)
+        self.cmbFeedback.setGeometry(QtCore.QRect(380, 40, 73, 22))
+        self.cmbFeedback.setObjectName("cmbFeedback")
+        self.cmbFeedback.addItem("")
+        self.cmbFeedback.addItem("")
         self.stackedWidget.addWidget(self.settings_page)
+        self.page = QtWidgets.QWidget()
+        self.page.setObjectName("page")
+        self.label = QtWidgets.QLabel(parent=self.page)
+        self.label.setGeometry(QtCore.QRect(490, 240, 55, 16))
+        self.label.setObjectName("label")
+        self.stackedWidget.addWidget(self.page)
         self.gridLayout.addWidget(self.stackedWidget, 1, 2, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(parent=MainWindow)
@@ -340,7 +395,7 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -352,15 +407,15 @@ class Ui_MainWindow(object):
         self.title2.setText(_translate("MainWindow", "TextLabel"))
         self.pushButton.setText(_translate("MainWindow", "PushButton"))
         item = self.tableUsers.horizontalHeaderItem(0)
-        item.setText(_translate("MainWindow", "id"))
+        item.setText(_translate("MainWindow", "Id"))
         item = self.tableUsers.horizontalHeaderItem(1)
-        item.setText(_translate("MainWindow", "name"))
+        item.setText(_translate("MainWindow", "Name"))
         item = self.tableUsers.horizontalHeaderItem(2)
-        item.setText(_translate("MainWindow", "photo"))
+        item.setText(_translate("MainWindow", "Photo"))
         item = self.tableUsers.horizontalHeaderItem(3)
-        item.setText(_translate("MainWindow", "departement"))
+        item.setText(_translate("MainWindow", "Departement"))
         item = self.tableUsers.horizontalHeaderItem(4)
-        item.setText(_translate("MainWindow", "role"))
+        item.setText(_translate("MainWindow", "Role"))
         self.label_2.setText(_translate("MainWindow", "Users"))
         self.label_7.setText(_translate("MainWindow", "Search by :"))
         self.cmbUsers.setItemText(0, _translate("MainWindow", "Id"))
@@ -403,7 +458,20 @@ class Ui_MainWindow(object):
         item.setText(_translate("MainWindow", "Email"))
         item = self.tableAdmins.horizontalHeaderItem(3)
         item.setText(_translate("MainWindow", "Password"))
-        self.label_4.setText(_translate("MainWindow", "settings"))
+        item = self.tableFeddback.horizontalHeaderItem(0)
+        item.setText(_translate("MainWindow", "id Feedback"))
+        item = self.tableFeddback.horizontalHeaderItem(1)
+        item.setText(_translate("MainWindow", "id Log"))
+        item = self.tableFeddback.horizontalHeaderItem(2)
+        item.setText(_translate("MainWindow", "Prediction state"))
+        item = self.tableFeddback.horizontalHeaderItem(3)
+        item.setText(_translate("MainWindow", "Reel User"))
+        self.btnExporFeedback.setText(_translate("MainWindow", "Export"))
+        self.label_4.setText(_translate("MainWindow", "Feed back"))
+        self.label_8.setText(_translate("MainWindow", "Prediction State :"))
+        self.cmbFeedback.setItemText(0, _translate("MainWindow", "True"))
+        self.cmbFeedback.setItemText(1, _translate("MainWindow", "False"))
+        self.label.setText(_translate("MainWindow", "settings"))
 
 
      
@@ -453,7 +521,6 @@ class MainWindow(QMainWindow):
 
 
 
-
         # self.side_menu.setMaximumWidth(200)  # Define the width when visible
         # self.side_menu.setHidden(True)      # Initially hide the sidebar
         # self.side_menu_icon.setMaximumWidth(50)  # Define the width for the icon-only menu
@@ -484,6 +551,10 @@ class MainWindow(QMainWindow):
                 "icon":"./icon/user.png"
             },
                         {
+                "name":"Feed Back",
+                "icon":"./icon/feedback.png"
+            },
+                        {
                 "name":"Settings",
                 "icon":"./icon/setting.png"
             },
@@ -498,9 +569,12 @@ class MainWindow(QMainWindow):
         self.load_admins_table()
         self.load_logs_table()
         self.load_departments_table()
+        self.load_feedback_table()
 
         self.side_menu.setMaximumWidth(0)
         self.side_menu_icon.setMaximumWidth(60)  # Show icon-only menu
+
+        # self.ui.timestamps = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
         # Users Actions
         self.ui.btnAddUser.clicked.connect(self.open_user_crud)
@@ -520,13 +594,21 @@ class MainWindow(QMainWindow):
         self.ui.btnAddAdmins.clicked.connect(self.open_admins_crud)
         self.ui.btnUpdateAdmin.clicked.connect(self.edit_selected_admin)  
 
+        # Feed back Actions
+        self.ui.btnRefreshFeedback.clicked.connect(self.load_feedback_table)
+
         # Excel Export Actions
         self.ui.btnExportUser.clicked.connect(lambda: self.export_table_to_excel(self.ui.tableUsers))
         self.ui.btnExportLogs.clicked.connect(lambda: self.export_table_to_excel(self.ui.tableLogs))
         self.ui.btnExportAdmins.clicked.connect(lambda: self.export_table_to_excel(self.ui.tableAdmins))
         self.ui.btnExportDepartements.clicked.connect(lambda: self.export_table_to_excel(self.ui.tableDepartements))
+        self.ui.btnExporFeedback.clicked.connect(lambda: self.export_table_to_excel(self.ui.tableFeddback))
 
-
+        # Research Buttons
+        self.ui.btnSearchUsers.clicked.connect(self.user_search)
+        # self.ui.btnSearchLogs.clicked.connect(self.logs_search)
+        self.ui.btnSearchFeedback.clicked.connect(self.feed_back_search)
+        
     def init_signal_slot(self):
         self.menu_btn.toggled["bool"].connect(self.side_menu.setHidden)
         self.menu_btn.toggled["bool"].connect(self.title2.setHidden)
@@ -691,6 +773,19 @@ class MainWindow(QMainWindow):
         for row_index, row_data in enumerate(rows):
             for col_index, col_data in enumerate(row_data):
                 self.ui.tableDepartements.setItem(row_index, col_index, QTableWidgetItem(str(col_data)))
+
+    
+    def load_feedback_table(self):
+        rows = self.db_manager.fetch_feedback()
+        self.ui.tableFeddback.setRowCount(len(rows))
+        for row_index, row_data in enumerate(rows):
+            for col_index, col_data in enumerate(row_data):
+                if(col_index == 2):
+                        if col_data == 1:
+                             col_data = "True"
+                        else:
+                             col_data = "False"
+                self.ui.tableFeddback.setItem(row_index, col_index, QTableWidgetItem(str(col_data)))
 
     def closeEvent(self, event):
         # Close the database connection when the window is closed
@@ -868,7 +963,95 @@ class MainWindow(QMainWindow):
 
         self.open_admins_crud(mode="edit", admin_data=admin_data)
 
-    # Admins end
+# Admins end
+
+# Research start
+
+    def user_search(self):
+        item = self.ui.cmbUsers.currentText()  # Get the selected search criterion (e.g., "Id", "Nom", etc.)
+        search_value = self.ui.txtUser.text()  # Get the value to search for
+        table = self.ui.tableUsers  # Assuming the table widget is named tableUsers
+
+        # List of rows to delete
+        rows_to_delete = []
+
+        for row in range(table.rowCount()):
+                if item == "Id":
+                        if table.item(row, 0).text() != search_value:  # Assuming Id is in the first column (index 0)
+                                rows_to_delete.append(row)  # Mark row for deletion
+                elif item == "Nom":
+                        if table.item(row, 1).text().lower() != search_value.lower():  # Assuming Name is in the second column (index 1)
+                                rows_to_delete.append(row)  # Mark row for deletion
+                elif item == "Departement":
+                        if table.item(row, 3).text().lower() != search_value.lower():  # Assuming Departement is in the third column (index 2)
+                                rows_to_delete.append(row)  # Mark row for deletion
+                elif item == "Role":
+                        if table.item(row, 4).text().lower() != search_value.lower():  # Assuming Role is in the fourth column (index 3)
+                                rows_to_delete.append(row)  # Mark row for deletion
+
+        # Now delete the marked rows
+        for row in reversed(rows_to_delete):
+                table.removeRow(row)
+
+
+#     def logs_search(self):
+#         # Get the selected start and end dates from the QDateEdit widgets
+#         start_date = self.ui.dateEdit_1.date().toPyDate()  # Start date from QDateEdit
+#         end_date = self.ui.dateEdit_2.date().toPyDate()  # End date from QDateEdit
+#         table = self.ui.tableLogs  # Assuming the table widget is named tableUsers
+
+#         # List of rows to delete
+#         rows_to_delete = []
+
+#         # Iterate over all rows and check if the timestamp is within the date range
+#         for row in range(table.rowCount()):
+#                 # Assuming Timestamp is in the fifth column (index 4) in format 'YYYY-MM-DD HH:MM:SS'
+#                 timestamp_str = table.item(row, 2).text()  # Get the timestamp string from the table
+#                 print(timestamp_str)
+
+#                 # try:
+#                 #         print(start_date,end_date)
+#                 #         print(timestamp_str)
+#                 #         row_timestamp = datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S")  # Adjust format if needed
+#                 #         print(row_timestamp)
+#                 #         print("#########╠")
+
+
+#                 #         if not (start_date <= row_timestamp.date() <= end_date):  # Only compare the date part
+#                 #                 rows_to_delete.append(row)
+
+#                 # except ValueError:
+#                 #         # If there's an issue parsing the timestamp, you can skip that row or log a message
+#                 #         print(f"Invalid timestamp format in row {row}. Skipping this row.")
+#                 # continue
+
+#         # Now delete the marked rows
+#         for row in reversed(rows_to_delete):
+#                 table.removeRow(row)
+
+    def feed_back_search(self):
+        item = self.ui.cmbFeedback.currentIndex()  
+        table = self.ui.tableFeddback  
+
+        # List of rows to delete
+        rows_to_delete = []
+
+        for row in range(table.rowCount()):
+                if item == 0:
+                        if table.item(row, 2).text() != "True":  
+                                rows_to_delete.append(row)  
+                if item == 1:
+                        if table.item(row, 2).text() != "False": 
+                                rows_to_delete.append(row)
+
+        # Now delete the marked rows
+        for row in reversed(rows_to_delete):
+                table.removeRow(row)
+
+
+
+# Research end
+
 
 
 if __name__ == "__main__":

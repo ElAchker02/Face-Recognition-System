@@ -31,6 +31,12 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName(u"centralwidget")
         self.gridLayout = QGridLayout(self.centralwidget)
         self.gridLayout.setObjectName(u"gridLayout")
+        self.listWidget_icon = QListWidget(self.centralwidget)
+        self.listWidget_icon.setObjectName(u"listWidget_icon")
+        self.listWidget_icon.setMaximumSize(QSize(50, 16777215))
+
+        self.gridLayout.addWidget(self.listWidget_icon, 1, 0, 1, 1)
+
         self.listWidget = QListWidget(self.centralwidget)
         self.listWidget.setObjectName(u"listWidget")
         self.listWidget.setMaximumSize(QSize(200, 16777215))
@@ -80,12 +86,6 @@ class Ui_MainWindow(object):
 
 
         self.gridLayout.addWidget(self.title_frame, 0, 0, 1, 2)
-
-        self.listWidget_icon = QListWidget(self.centralwidget)
-        self.listWidget_icon.setObjectName(u"listWidget_icon")
-        self.listWidget_icon.setMaximumSize(QSize(50, 16777215))
-
-        self.gridLayout.addWidget(self.listWidget_icon, 1, 0, 1, 1)
 
         self.stackedWidget = QStackedWidget(self.centralwidget)
         self.stackedWidget.setObjectName(u"stackedWidget")
@@ -203,15 +203,18 @@ class Ui_MainWindow(object):
         self.btnExportLogs.setStyleSheet(u"color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 255, 0);")
         self.btnExportLogs.setIcon(icon2)
-        self.dateEdit = QDateEdit(self.frame_3)
-        self.dateEdit.setObjectName(u"dateEdit")
-        self.dateEdit.setGeometry(QRect(230, 30, 110, 22))
+        self.dateEdit_1 = QDateEdit(self.frame_3)
+        self.dateEdit_1.setObjectName(u"dateEdit_1")
+        self.dateEdit_1.setGeometry(QRect(230, 30, 110, 22))
         self.btnSearchLogs = QPushButton(self.frame_3)
         self.btnSearchLogs.setObjectName(u"btnSearchLogs")
-        self.btnSearchLogs.setGeometry(QRect(370, 30, 41, 30))
+        self.btnSearchLogs.setGeometry(QRect(580, 30, 41, 30))
         self.btnSearchLogs.setStyleSheet(u"color: rgb(255, 255, 255);\n"
 "background-color: rgb(85, 170, 255);")
         self.btnSearchLogs.setIcon(icon3)
+        self.dateEdit_2 = QDateEdit(self.frame_3)
+        self.dateEdit_2.setObjectName(u"dateEdit_2")
+        self.dateEdit_2.setGeometry(QRect(390, 30, 110, 22))
         self.tableLogs = QTableWidget(self.logs_page)
         if (self.tableLogs.columnCount() < 4):
             self.tableLogs.setColumnCount(4)
@@ -355,10 +358,57 @@ class Ui_MainWindow(object):
         self.stackedWidget.addWidget(self.admins_page)
         self.settings_page = QWidget()
         self.settings_page.setObjectName(u"settings_page")
+        self.tableFeddback = QTableWidget(self.settings_page)
+        if (self.tableFeddback.columnCount() < 4):
+            self.tableFeddback.setColumnCount(4)
+        __qtablewidgetitem15 = QTableWidgetItem()
+        self.tableFeddback.setHorizontalHeaderItem(0, __qtablewidgetitem15)
+        __qtablewidgetitem16 = QTableWidgetItem()
+        self.tableFeddback.setHorizontalHeaderItem(1, __qtablewidgetitem16)
+        __qtablewidgetitem17 = QTableWidgetItem()
+        self.tableFeddback.setHorizontalHeaderItem(2, __qtablewidgetitem17)
+        __qtablewidgetitem18 = QTableWidgetItem()
+        self.tableFeddback.setHorizontalHeaderItem(3, __qtablewidgetitem18)
+        self.tableFeddback.setObjectName(u"tableFeddback")
+        self.tableFeddback.setGeometry(QRect(10, 100, 1281, 541))
+        self.tableFeddback.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.tableFeddback.setSelectionMode(QAbstractItemView.ExtendedSelection)
+        self.tableFeddback.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.btnRefreshFeedback = QPushButton(self.settings_page)
+        self.btnRefreshFeedback.setObjectName(u"btnRefreshFeedback")
+        self.btnRefreshFeedback.setGeometry(QRect(20, 40, 41, 30))
+        self.btnRefreshFeedback.setStyleSheet(u"background-color: rgb(85, 170, 255);")
+        self.btnRefreshFeedback.setIcon(icon1)
+        self.btnSearchFeedback = QPushButton(self.settings_page)
+        self.btnSearchFeedback.setObjectName(u"btnSearchFeedback")
+        self.btnSearchFeedback.setGeometry(QRect(510, 40, 41, 30))
+        self.btnSearchFeedback.setStyleSheet(u"color: rgb(255, 255, 255);\n"
+"background-color: rgb(85, 170, 255);")
+        self.btnSearchFeedback.setIcon(icon3)
+        self.btnExporFeedback = QPushButton(self.settings_page)
+        self.btnExporFeedback.setObjectName(u"btnExporFeedback")
+        self.btnExporFeedback.setGeometry(QRect(1190, 40, 93, 30))
+        self.btnExporFeedback.setStyleSheet(u"color: rgb(255, 255, 255);\n"
+"background-color: rgb(0, 255, 0);")
+        self.btnExporFeedback.setIcon(icon2)
         self.label_4 = QLabel(self.settings_page)
         self.label_4.setObjectName(u"label_4")
-        self.label_4.setGeometry(QRect(350, 280, 55, 16))
+        self.label_4.setGeometry(QRect(80, 40, 71, 21))
+        self.label_8 = QLabel(self.settings_page)
+        self.label_8.setObjectName(u"label_8")
+        self.label_8.setGeometry(QRect(240, 40, 121, 16))
+        self.cmbFeedback = QComboBox(self.settings_page)
+        self.cmbFeedback.addItem("")
+        self.cmbFeedback.addItem("")
+        self.cmbFeedback.setObjectName(u"cmbFeedback")
+        self.cmbFeedback.setGeometry(QRect(380, 40, 73, 22))
         self.stackedWidget.addWidget(self.settings_page)
+        self.page = QWidget()
+        self.page.setObjectName(u"page")
+        self.label = QLabel(self.page)
+        self.label.setObjectName(u"label")
+        self.label.setGeometry(QRect(490, 240, 55, 16))
+        self.stackedWidget.addWidget(self.page)
 
         self.gridLayout.addWidget(self.stackedWidget, 1, 2, 1, 1)
 
@@ -373,7 +423,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -387,15 +437,15 @@ class Ui_MainWindow(object):
         self.title2.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
         ___qtablewidgetitem = self.tableUsers.horizontalHeaderItem(0)
-        ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"id", None));
+        ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"Id", None));
         ___qtablewidgetitem1 = self.tableUsers.horizontalHeaderItem(1)
-        ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"name", None));
+        ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"Name", None));
         ___qtablewidgetitem2 = self.tableUsers.horizontalHeaderItem(2)
-        ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"photo", None));
+        ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"Photo", None));
         ___qtablewidgetitem3 = self.tableUsers.horizontalHeaderItem(3)
-        ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"departement", None));
+        ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"Departement", None));
         ___qtablewidgetitem4 = self.tableUsers.horizontalHeaderItem(4)
-        ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"role", None));
+        ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"Role", None));
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Users", None))
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"Search by :", None))
         self.cmbUsers.setItemText(0, QCoreApplication.translate("MainWindow", u"Id", None))
@@ -445,6 +495,22 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem13.setText(QCoreApplication.translate("MainWindow", u"Email", None));
         ___qtablewidgetitem14 = self.tableAdmins.horizontalHeaderItem(3)
         ___qtablewidgetitem14.setText(QCoreApplication.translate("MainWindow", u"Password", None));
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"settings", None))
+        ___qtablewidgetitem15 = self.tableFeddback.horizontalHeaderItem(0)
+        ___qtablewidgetitem15.setText(QCoreApplication.translate("MainWindow", u"id Feedback", None));
+        ___qtablewidgetitem16 = self.tableFeddback.horizontalHeaderItem(1)
+        ___qtablewidgetitem16.setText(QCoreApplication.translate("MainWindow", u"id Log", None));
+        ___qtablewidgetitem17 = self.tableFeddback.horizontalHeaderItem(2)
+        ___qtablewidgetitem17.setText(QCoreApplication.translate("MainWindow", u"Prediction state", None));
+        ___qtablewidgetitem18 = self.tableFeddback.horizontalHeaderItem(3)
+        ___qtablewidgetitem18.setText(QCoreApplication.translate("MainWindow", u"Reel User", None));
+        self.btnRefreshFeedback.setText("")
+        self.btnSearchFeedback.setText("")
+        self.btnExporFeedback.setText(QCoreApplication.translate("MainWindow", u"Export", None))
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Feed back", None))
+        self.label_8.setText(QCoreApplication.translate("MainWindow", u"Prediction State :", None))
+        self.cmbFeedback.setItemText(0, QCoreApplication.translate("MainWindow", u"True", None))
+        self.cmbFeedback.setItemText(1, QCoreApplication.translate("MainWindow", u"False", None))
+
+        self.label.setText(QCoreApplication.translate("MainWindow", u"settings", None))
     # retranslateUi
 
