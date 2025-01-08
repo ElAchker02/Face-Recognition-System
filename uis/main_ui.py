@@ -15,12 +15,12 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QAbstractItemView, QApplication, QComboBox, QDateEdit,
-    QFrame, QGridLayout, QHBoxLayout, QHeaderView,
-    QLabel, QLineEdit, QListWidget, QListWidgetItem,
-    QMainWindow, QMenuBar, QPushButton, QSizePolicy,
-    QStackedWidget, QStatusBar, QTableWidget, QTableWidgetItem,
-    QWidget)
+from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplication, QComboBox,
+    QDateEdit, QFrame, QGridLayout, QHBoxLayout,
+    QHeaderView, QLabel, QLineEdit, QListWidget,
+    QListWidgetItem, QMainWindow, QMenuBar, QPushButton,
+    QSizePolicy, QSpinBox, QStackedWidget, QStatusBar,
+    QTableWidget, QTableWidgetItem, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -61,7 +61,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.addWidget(self.timestamps)
 
 
-        self.gridLayout.addWidget(self.frame_2, 0, 2, 1, 1)
+        self.gridLayout.addWidget(self.frame_2, 0, 3, 1, 1)
 
         self.title_frame = QFrame(self.centralwidget)
         self.title_frame.setObjectName(u"title_frame")
@@ -108,7 +108,7 @@ class Ui_MainWindow(object):
         __qtablewidgetitem4 = QTableWidgetItem()
         self.tableUsers.setHorizontalHeaderItem(4, __qtablewidgetitem4)
         self.tableUsers.setObjectName(u"tableUsers")
-        self.tableUsers.setGeometry(QRect(10, 80, 1271, 621))
+        self.tableUsers.setGeometry(QRect(10, 80, 1271, 571))
         self.tableUsers.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.tableUsers.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.frame_6 = QFrame(self.Users_page)
@@ -236,7 +236,7 @@ class Ui_MainWindow(object):
         self.departements_page.setObjectName(u"departements_page")
         self.frame_4 = QFrame(self.departements_page)
         self.frame_4.setObjectName(u"frame_4")
-        self.frame_4.setGeometry(QRect(0, 0, 530, 54))
+        self.frame_4.setGeometry(QRect(0, 0, 1291, 61))
         self.frame_4.setStyleSheet(u"font: 75 10pt \"MS Shell Dlg 2\";")
         self.frame_4.setFrameShape(QFrame.StyledPanel)
         self.frame_4.setFrameShadow(QFrame.Raised)
@@ -371,6 +371,7 @@ class Ui_MainWindow(object):
         self.tableFeddback.setHorizontalHeaderItem(3, __qtablewidgetitem18)
         self.tableFeddback.setObjectName(u"tableFeddback")
         self.tableFeddback.setGeometry(QRect(10, 100, 1281, 541))
+        self.tableFeddback.setSizeAdjustPolicy(QAbstractScrollArea.AdjustIgnored)
         self.tableFeddback.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.tableFeddback.setSelectionMode(QAbstractItemView.ExtendedSelection)
         self.tableFeddback.setSelectionBehavior(QAbstractItemView.SelectRows)
@@ -407,10 +408,69 @@ class Ui_MainWindow(object):
         self.page.setObjectName(u"page")
         self.label = QLabel(self.page)
         self.label.setObjectName(u"label")
-        self.label.setGeometry(QRect(490, 240, 55, 16))
+        self.label.setGeometry(QRect(560, 0, 231, 101))
+        self.label.setStyleSheet(u"font: 75 30pt \"MS Shell Dlg 2\";")
+        self.layoutWidget1 = QWidget(self.page)
+        self.layoutWidget1.setObjectName(u"layoutWidget1")
+        self.layoutWidget1.setGeometry(QRect(20, 120, 471, 251))
+        self.gridLayout_2 = QGridLayout(self.layoutWidget1)
+        self.gridLayout_2.setObjectName(u"gridLayout_2")
+        self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.label_9 = QLabel(self.layoutWidget1)
+        self.label_9.setObjectName(u"label_9")
+        self.label_9.setStyleSheet(u"font: 75 10pt \"MS Shell Dlg 2\";")
+
+        self.gridLayout_2.addWidget(self.label_9, 0, 0, 1, 1)
+
+        self.txtEmailSender = QLineEdit(self.layoutWidget1)
+        self.txtEmailSender.setObjectName(u"txtEmailSender")
+
+        self.gridLayout_2.addWidget(self.txtEmailSender, 1, 1, 1, 1)
+
+        self.label_10 = QLabel(self.layoutWidget1)
+        self.label_10.setObjectName(u"label_10")
+        self.label_10.setStyleSheet(u"font: 75 10pt \"MS Shell Dlg 2\";")
+
+        self.gridLayout_2.addWidget(self.label_10, 1, 0, 1, 1)
+
+        self.txtPassword = QLineEdit(self.layoutWidget1)
+        self.txtPassword.setObjectName(u"txtPassword")
+
+        self.gridLayout_2.addWidget(self.txtPassword, 3, 1, 1, 1)
+
+        self.label_11 = QLabel(self.layoutWidget1)
+        self.label_11.setObjectName(u"label_11")
+        self.label_11.setStyleSheet(u"font: 75 10pt \"MS Shell Dlg 2\";")
+
+        self.gridLayout_2.addWidget(self.label_11, 2, 0, 1, 1)
+
+        self.txtEmailReceiver = QLineEdit(self.layoutWidget1)
+        self.txtEmailReceiver.setObjectName(u"txtEmailReceiver")
+
+        self.gridLayout_2.addWidget(self.txtEmailReceiver, 2, 1, 1, 1)
+
+        self.label_12 = QLabel(self.layoutWidget1)
+        self.label_12.setObjectName(u"label_12")
+        self.label_12.setStyleSheet(u"font: 75 10pt \"MS Shell Dlg 2\";")
+
+        self.gridLayout_2.addWidget(self.label_12, 3, 0, 1, 1)
+
+        self.conf = QSpinBox(self.layoutWidget1)
+        self.conf.setObjectName(u"conf")
+
+        self.gridLayout_2.addWidget(self.conf, 0, 1, 1, 1)
+
+        self.btnUpdateSettings = QPushButton(self.layoutWidget1)
+        self.btnUpdateSettings.setObjectName(u"btnUpdateSettings")
+        self.btnUpdateSettings.setStyleSheet(u"color: rgb(255, 255, 255);\n"
+"background-color: rgb(0, 0, 0);")
+        self.btnUpdateSettings.setIcon(icon4)
+
+        self.gridLayout_2.addWidget(self.btnUpdateSettings, 4, 1, 1, 1)
+
         self.stackedWidget.addWidget(self.page)
 
-        self.gridLayout.addWidget(self.stackedWidget, 1, 2, 1, 1)
+        self.gridLayout.addWidget(self.stackedWidget, 1, 3, 1, 1)
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
@@ -423,7 +483,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -511,6 +571,11 @@ class Ui_MainWindow(object):
         self.cmbFeedback.setItemText(0, QCoreApplication.translate("MainWindow", u"True", None))
         self.cmbFeedback.setItemText(1, QCoreApplication.translate("MainWindow", u"False", None))
 
-        self.label.setText(QCoreApplication.translate("MainWindow", u"settings", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"Settings", None))
+        self.label_9.setText(QCoreApplication.translate("MainWindow", u"Confidence Tresh hold :", None))
+        self.label_10.setText(QCoreApplication.translate("MainWindow", u"Email Sender :", None))
+        self.label_11.setText(QCoreApplication.translate("MainWindow", u"Email Receiver :", None))
+        self.label_12.setText(QCoreApplication.translate("MainWindow", u"Password :", None))
+        self.btnUpdateSettings.setText(QCoreApplication.translate("MainWindow", u"Update", None))
     # retranslateUi
 

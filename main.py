@@ -2,7 +2,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 
 import sys
 from PyQt6.QtWidgets import QMainWindow, QApplication, QLabel, QListWidgetItem,QWidget, QGridLayout,QMessageBox,QFileDialog
-from PyQt6.QtCore import Qt, QSize,QSortFilterProxyModel
+from PyQt6.QtCore import Qt, QSize,QSortFilterProxyModel,QTimer
 from PyQt6.QtGui import QIcon, QPixmap, QFont
 from PyQt6.QtCore import QPropertyAnimation
 from db_operations import DatabaseManager
@@ -14,7 +14,6 @@ import pandas as pd
 import xlsxwriter
 from datetime import datetime
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
-
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -45,7 +44,7 @@ class Ui_MainWindow(object):
         self.timestamps.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight|QtCore.Qt.AlignmentFlag.AlignTrailing|QtCore.Qt.AlignmentFlag.AlignVCenter)
         self.timestamps.setObjectName("timestamps")
         self.horizontalLayout_2.addWidget(self.timestamps)
-        self.gridLayout.addWidget(self.frame_2, 0, 2, 1, 1)
+        self.gridLayout.addWidget(self.frame_2, 0, 3, 1, 1)
         self.title_frame = QtWidgets.QFrame(parent=self.centralwidget)
         self.title_frame.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.title_frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
@@ -70,7 +69,7 @@ class Ui_MainWindow(object):
         self.Users_page = QtWidgets.QWidget()
         self.Users_page.setObjectName("Users_page")
         self.tableUsers = QtWidgets.QTableWidget(parent=self.Users_page)
-        self.tableUsers.setGeometry(QtCore.QRect(10, 80, 1271, 621))
+        self.tableUsers.setGeometry(QtCore.QRect(10, 80, 1271, 571))
         self.tableUsers.setEditTriggers(QtWidgets.QAbstractItemView.EditTrigger.NoEditTriggers)
         self.tableUsers.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectionBehavior.SelectRows)
         self.tableUsers.setObjectName("tableUsers")
@@ -214,7 +213,7 @@ class Ui_MainWindow(object):
         self.departements_page = QtWidgets.QWidget()
         self.departements_page.setObjectName("departements_page")
         self.frame_4 = QtWidgets.QFrame(parent=self.departements_page)
-        self.frame_4.setGeometry(QtCore.QRect(0, 0, 530, 54))
+        self.frame_4.setGeometry(QtCore.QRect(0, 0, 1291, 61))
         self.frame_4.setStyleSheet("font: 75 10pt \"MS Shell Dlg 2\";")
         self.frame_4.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame_4.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
@@ -333,6 +332,7 @@ class Ui_MainWindow(object):
         self.settings_page.setObjectName("settings_page")
         self.tableFeddback = QtWidgets.QTableWidget(parent=self.settings_page)
         self.tableFeddback.setGeometry(QtCore.QRect(10, 100, 1281, 541))
+        self.tableFeddback.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.SizeAdjustPolicy.AdjustIgnored)
         self.tableFeddback.setEditTriggers(QtWidgets.QAbstractItemView.EditTrigger.NoEditTriggers)
         self.tableFeddback.setSelectionMode(QtWidgets.QAbstractItemView.SelectionMode.ExtendedSelection)
         self.tableFeddback.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectionBehavior.SelectRows)
@@ -381,10 +381,51 @@ class Ui_MainWindow(object):
         self.page = QtWidgets.QWidget()
         self.page.setObjectName("page")
         self.label = QtWidgets.QLabel(parent=self.page)
-        self.label.setGeometry(QtCore.QRect(490, 240, 55, 16))
+        self.label.setGeometry(QtCore.QRect(560, 0, 231, 101))
+        self.label.setStyleSheet("font: 75 30pt \"MS Shell Dlg 2\";")
         self.label.setObjectName("label")
+        self.layoutWidget1 = QtWidgets.QWidget(parent=self.page)
+        self.layoutWidget1.setGeometry(QtCore.QRect(20, 120, 471, 251))
+        self.layoutWidget1.setObjectName("layoutWidget1")
+        self.gridLayout_2 = QtWidgets.QGridLayout(self.layoutWidget1)
+        self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout_2.setObjectName("gridLayout_2")
+        self.label_9 = QtWidgets.QLabel(parent=self.layoutWidget1)
+        self.label_9.setStyleSheet("font: 75 10pt \"MS Shell Dlg 2\";")
+        self.label_9.setObjectName("label_9")
+        self.gridLayout_2.addWidget(self.label_9, 0, 0, 1, 1)
+        self.txtEmailSender = QtWidgets.QLineEdit(parent=self.layoutWidget1)
+        self.txtEmailSender.setObjectName("txtEmailSender")
+        self.gridLayout_2.addWidget(self.txtEmailSender, 1, 1, 1, 1)
+        self.label_10 = QtWidgets.QLabel(parent=self.layoutWidget1)
+        self.label_10.setStyleSheet("font: 75 10pt \"MS Shell Dlg 2\";")
+        self.label_10.setObjectName("label_10")
+        self.gridLayout_2.addWidget(self.label_10, 1, 0, 1, 1)
+        self.txtPassword = QtWidgets.QLineEdit(parent=self.layoutWidget1)
+        self.txtPassword.setObjectName("txtPassword")
+        self.gridLayout_2.addWidget(self.txtPassword, 3, 1, 1, 1)
+        self.label_11 = QtWidgets.QLabel(parent=self.layoutWidget1)
+        self.label_11.setStyleSheet("font: 75 10pt \"MS Shell Dlg 2\";")
+        self.label_11.setObjectName("label_11")
+        self.gridLayout_2.addWidget(self.label_11, 2, 0, 1, 1)
+        self.txtEmailReceiver = QtWidgets.QLineEdit(parent=self.layoutWidget1)
+        self.txtEmailReceiver.setObjectName("txtEmailReceiver")
+        self.gridLayout_2.addWidget(self.txtEmailReceiver, 2, 1, 1, 1)
+        self.label_12 = QtWidgets.QLabel(parent=self.layoutWidget1)
+        self.label_12.setStyleSheet("font: 75 10pt \"MS Shell Dlg 2\";")
+        self.label_12.setObjectName("label_12")
+        self.gridLayout_2.addWidget(self.label_12, 3, 0, 1, 1)
+        self.conf = QtWidgets.QSpinBox(parent=self.layoutWidget1)
+        self.conf.setObjectName("conf")
+        self.gridLayout_2.addWidget(self.conf, 0, 1, 1, 1)
+        self.btnUpdateSettings = QtWidgets.QPushButton(parent=self.layoutWidget1)
+        self.btnUpdateSettings.setStyleSheet("color: rgb(255, 255, 255);\n"
+"background-color: rgb(0, 0, 0);")
+        self.btnUpdateSettings.setIcon(icon4)
+        self.btnUpdateSettings.setObjectName("btnUpdateSettings")
+        self.gridLayout_2.addWidget(self.btnUpdateSettings, 4, 1, 1, 1)
         self.stackedWidget.addWidget(self.page)
-        self.gridLayout.addWidget(self.stackedWidget, 1, 2, 1, 1)
+        self.gridLayout.addWidget(self.stackedWidget, 1, 3, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(parent=MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1581, 26))
@@ -395,7 +436,7 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -471,10 +512,14 @@ class Ui_MainWindow(object):
         self.label_8.setText(_translate("MainWindow", "Prediction State :"))
         self.cmbFeedback.setItemText(0, _translate("MainWindow", "True"))
         self.cmbFeedback.setItemText(1, _translate("MainWindow", "False"))
-        self.label.setText(_translate("MainWindow", "settings"))
+        self.label.setText(_translate("MainWindow", "Settings"))
+        self.label_9.setText(_translate("MainWindow", "Confidence Tresh hold :"))
+        self.label_10.setText(_translate("MainWindow", "Email Sender :"))
+        self.label_11.setText(_translate("MainWindow", "Email Receiver :"))
+        self.label_12.setText(_translate("MainWindow", "Password :"))
+        self.btnUpdateSettings.setText(_translate("MainWindow", "Update"))
 
 
-     
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -570,11 +615,15 @@ class MainWindow(QMainWindow):
         self.load_logs_table()
         self.load_departments_table()
         self.load_feedback_table()
+        self.load_settings()
 
         self.side_menu.setMaximumWidth(0)
         self.side_menu_icon.setMaximumWidth(60)  # Show icon-only menu
 
-        # self.ui.timestamps = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        # Timer to update the timestamp
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self.update_timestamp)  # Connect the timer signal to the update method
+        self.timer.start(1000)  # Update every 1 second
 
         # Users Actions
         self.ui.btnAddUser.clicked.connect(self.open_user_crud)
@@ -604,6 +653,9 @@ class MainWindow(QMainWindow):
         self.ui.btnExportDepartements.clicked.connect(lambda: self.export_table_to_excel(self.ui.tableDepartements))
         self.ui.btnExporFeedback.clicked.connect(lambda: self.export_table_to_excel(self.ui.tableFeddback))
 
+        # settings
+        self.ui.btnUpdateSettings.clicked.connect(self.update_settings)
+
         # Research Buttons
         self.ui.btnSearchUsers.clicked.connect(self.user_search)
         # self.ui.btnSearchLogs.clicked.connect(self.logs_search)
@@ -630,6 +682,10 @@ class MainWindow(QMainWindow):
 
 
         self.menu_btn.toggled.connect(self.button_icon_change)
+
+    def update_timestamp(self):
+        current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        self.ui.timestamps.setText(f"{current_time}")
 
 
     def export_table_to_excel(self, table_widget):
@@ -1052,6 +1108,24 @@ class MainWindow(QMainWindow):
 
 # Research end
 
+    def load_settings(self):
+        self.ui.conf.setSuffix(" %")
+        row = self.db_manager.fetch_setttings()
+        self.ui.conf.setValue(row[0][0])
+        self.ui.txtEmailReceiver.setText(row[0][1])
+        self.ui.txtEmailSender.setText(row[0][2])
+        self.ui.txtPassword.setText(row[0][3])
+
+    def update_settings(self):
+        treshhold = self.ui.conf.value()
+        email_sender = self.ui.txtEmailSender.text().strip()
+        email_receiver = self.ui.txtEmailReceiver.text().strip()
+        password = self.ui.txtPassword.text().strip()
+        
+        if not treshhold or not email_sender or not email_receiver or not password :
+                QMessageBox.warning(self, "Input Error", "All fields are required!")
+                return
+        self.db_manager.update_settings(treshhold,email_sender,email_receiver,password)
 
 
 if __name__ == "__main__":

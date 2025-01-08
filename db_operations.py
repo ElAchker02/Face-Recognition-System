@@ -151,6 +151,26 @@ class DatabaseManager:
         query = "SELECT * FROM Feedback"
         self.cursor.execute(query)
         return self.cursor.fetchall()
+    
+    def fetch_setttings(self):
+        query = "SELECT threshold,email_sender,email_receiver,password FROM Settings where setting_id = 1"
+        self.cursor.execute(query)
+        return self.cursor.fetchall()
+
+    def update_settings(self, threshold, email_sender, email_receiver, password):
+        query = """
+            UPDATE Settings 
+            SET threshold = ?, 
+                email_sender = ?, 
+                email_receiver = ?, 
+                password = ? 
+            WHERE setting_id = 1
+        """
+        try:
+            self.cursor.execute(query, (threshold, email_sender, email_receiver, password))
+            self.connection.commit()  # Ensure changes are saved to the database
+        except Exception as e:
+            print(f"Error updating settings: {e}")
 
     def close_connection(self):
         """Close the database connection."""
