@@ -13,6 +13,16 @@ class DatabaseManager:
         """
         self.cursor.execute(query)
         return self.cursor.fetchall()
+    
+    def total_users(self):
+        query = """
+            SELECT COUNT(*) AS total_users
+            FROM Users
+        """
+        self.cursor.execute(query)
+        result = self.cursor.fetchone()
+        return result[0]
+
 
     def get_users_from_db(self):
         # Query to fetch both department ID and name
@@ -99,6 +109,17 @@ class DatabaseManager:
             self.connection.commit()
 
 
+    def total_entries_today(self):
+        query = """
+            SELECT COUNT(*) AS total_entries
+            FROM AccessLogs
+            WHERE DATE(timestamp) = DATE('now', 'localtime')
+        """
+        self.cursor.execute(query)
+        result = self.cursor.fetchone() 
+        return result[0] 
+
+
     def fetch_logs(self):
         """Read all logs and display user names instead of user IDs."""
         query = """
@@ -116,6 +137,15 @@ class DatabaseManager:
         self.cursor.execute(query)
         return self.cursor.fetchall()
 
+    def total_entries_last_7_days(self):
+        query = """
+            SELECT COUNT(*)
+            FROM AccessLogs
+            WHERE timestamp >= DATE('now', '-7 days')
+        """
+        self.cursor.execute(query)
+        result = self.cursor.fetchone()
+        return result[0] if result[0] else 0
 
     def fetch_departments(self):
         """Read all departments."""
@@ -152,6 +182,18 @@ class DatabaseManager:
         query = "SELECT * FROM Feedback order by idfeed desc"
         self.cursor.execute(query)
         return self.cursor.fetchall()
+    
+    def total_true_predictions(self):
+        query = "SELECT count(*) FROM Feedback where pred = 1"
+        self.cursor.execute(query)
+        result = self.cursor.fetchone() 
+        return result[0] 
+    
+    def total_wrong_predictions(self):
+        query = "SELECT count(*) FROM Feedback where pred = 0"
+        self.cursor.execute(query)
+        result = self.cursor.fetchone() 
+        return result[0] 
     
     def fetch_setttings(self):
         query = "SELECT threshold,email_sender,email_receiver,password FROM Settings where setting_id = 1"

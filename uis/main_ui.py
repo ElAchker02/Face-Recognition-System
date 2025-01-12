@@ -16,11 +16,12 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplication, QComboBox,
-    QDateEdit, QFrame, QGridLayout, QHBoxLayout,
-    QHeaderView, QLabel, QLineEdit, QListWidget,
-    QListWidgetItem, QMainWindow, QMenuBar, QPushButton,
-    QSizePolicy, QSpinBox, QStackedWidget, QStatusBar,
-    QTableWidget, QTableWidgetItem, QWidget)
+    QDateEdit, QFrame, QGridLayout, QGroupBox,
+    QHBoxLayout, QHeaderView, QLabel, QLayout,
+    QLineEdit, QListWidget, QListWidgetItem, QMainWindow,
+    QMenuBar, QPushButton, QSizePolicy, QSpinBox,
+    QStackedWidget, QStatusBar, QTableWidget, QTableWidgetItem,
+    QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -31,37 +32,17 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName(u"centralwidget")
         self.gridLayout = QGridLayout(self.centralwidget)
         self.gridLayout.setObjectName(u"gridLayout")
-        self.listWidget_icon = QListWidget(self.centralwidget)
-        self.listWidget_icon.setObjectName(u"listWidget_icon")
-        self.listWidget_icon.setMaximumSize(QSize(50, 16777215))
-
-        self.gridLayout.addWidget(self.listWidget_icon, 1, 0, 1, 1)
-
         self.listWidget = QListWidget(self.centralwidget)
         self.listWidget.setObjectName(u"listWidget")
         self.listWidget.setMaximumSize(QSize(200, 16777215))
 
         self.gridLayout.addWidget(self.listWidget, 1, 1, 1, 1)
 
-        self.frame_2 = QFrame(self.centralwidget)
-        self.frame_2.setObjectName(u"frame_2")
-        self.frame_2.setFrameShape(QFrame.StyledPanel)
-        self.frame_2.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_2 = QHBoxLayout(self.frame_2)
-        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.admin = QLabel(self.frame_2)
-        self.admin.setObjectName(u"admin")
+        self.listWidget_icon = QListWidget(self.centralwidget)
+        self.listWidget_icon.setObjectName(u"listWidget_icon")
+        self.listWidget_icon.setMaximumSize(QSize(50, 16777215))
 
-        self.horizontalLayout_2.addWidget(self.admin)
-
-        self.timestamps = QLabel(self.frame_2)
-        self.timestamps.setObjectName(u"timestamps")
-        self.timestamps.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.horizontalLayout_2.addWidget(self.timestamps)
-
-
-        self.gridLayout.addWidget(self.frame_2, 0, 3, 1, 1)
+        self.gridLayout.addWidget(self.listWidget_icon, 1, 0, 1, 1)
 
         self.title_frame = QFrame(self.centralwidget)
         self.title_frame.setObjectName(u"title_frame")
@@ -87,10 +68,144 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.title_frame, 0, 0, 1, 2)
 
+        self.frame_2 = QFrame(self.centralwidget)
+        self.frame_2.setObjectName(u"frame_2")
+        self.frame_2.setFrameShape(QFrame.StyledPanel)
+        self.frame_2.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_2 = QHBoxLayout(self.frame_2)
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.admin = QLabel(self.frame_2)
+        self.admin.setObjectName(u"admin")
+        self.admin.setStyleSheet(u"font: 75 10pt \"MS Shell Dlg 2\";")
+
+        self.horizontalLayout_2.addWidget(self.admin)
+
+        self.timestamps = QLabel(self.frame_2)
+        self.timestamps.setObjectName(u"timestamps")
+        self.timestamps.setStyleSheet(u"font: 75 10pt \"MS Shell Dlg 2\";")
+        self.timestamps.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+
+        self.horizontalLayout_2.addWidget(self.timestamps)
+
+
+        self.gridLayout.addWidget(self.frame_2, 0, 2, 1, 2)
+
         self.stackedWidget = QStackedWidget(self.centralwidget)
         self.stackedWidget.setObjectName(u"stackedWidget")
         self.dashboard_page = QWidget()
         self.dashboard_page.setObjectName(u"dashboard_page")
+        self.widget = QWidget(self.dashboard_page)
+        self.widget.setObjectName(u"widget")
+        self.widget.setGeometry(QRect(30, 60, 1251, 521))
+        self.gridLayout_9 = QGridLayout(self.widget)
+        self.gridLayout_9.setObjectName(u"gridLayout_9")
+        self.gridLayout_9.setSizeConstraint(QLayout.SetDefaultConstraint)
+        self.gridLayout_9.setContentsMargins(0, 0, 0, 0)
+        self.groupBox = QGroupBox(self.widget)
+        self.groupBox.setObjectName(u"groupBox")
+        self.groupBox.setStyleSheet(u"font: 75 10pt \"MS Shell Dlg 2\";")
+        self.groupBox.setAlignment(Qt.AlignCenter)
+        self.gridLayout_3 = QGridLayout(self.groupBox)
+        self.gridLayout_3.setObjectName(u"gridLayout_3")
+        self.nbUsers = QLabel(self.groupBox)
+        self.nbUsers.setObjectName(u"nbUsers")
+        self.nbUsers.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_3.addWidget(self.nbUsers, 0, 0, 1, 1)
+
+
+        self.gridLayout_9.addWidget(self.groupBox, 0, 0, 1, 1)
+
+        self.groupBox_3 = QGroupBox(self.widget)
+        self.groupBox_3.setObjectName(u"groupBox_3")
+        self.groupBox_3.setStyleSheet(u"font: 75 10pt \"MS Shell Dlg 2\";")
+        self.groupBox_3.setAlignment(Qt.AlignCenter)
+        self.gridLayout_5 = QGridLayout(self.groupBox_3)
+        self.gridLayout_5.setObjectName(u"gridLayout_5")
+        self.entriesToday = QLabel(self.groupBox_3)
+        self.entriesToday.setObjectName(u"entriesToday")
+        self.entriesToday.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_5.addWidget(self.entriesToday, 0, 0, 1, 1)
+
+
+        self.gridLayout_9.addWidget(self.groupBox_3, 0, 1, 1, 1)
+
+        self.groupBox_2 = QGroupBox(self.widget)
+        self.groupBox_2.setObjectName(u"groupBox_2")
+        self.groupBox_2.setStyleSheet(u"font: 75 10pt \"MS Shell Dlg 2\";")
+        self.groupBox_2.setAlignment(Qt.AlignCenter)
+        self.gridLayout_4 = QGridLayout(self.groupBox_2)
+        self.gridLayout_4.setObjectName(u"gridLayout_4")
+        self.nbUnrecognizedToday = QLabel(self.groupBox_2)
+        self.nbUnrecognizedToday.setObjectName(u"nbUnrecognizedToday")
+        self.nbUnrecognizedToday.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_4.addWidget(self.nbUnrecognizedToday, 0, 0, 1, 1)
+
+
+        self.gridLayout_9.addWidget(self.groupBox_2, 0, 2, 1, 1)
+
+        self.groupBox_4 = QGroupBox(self.widget)
+        self.groupBox_4.setObjectName(u"groupBox_4")
+        self.groupBox_4.setStyleSheet(u"font: 75 10pt \"MS Shell Dlg 2\";")
+        self.groupBox_4.setAlignment(Qt.AlignCenter)
+        self.gridLayout_6 = QGridLayout(self.groupBox_4)
+        self.gridLayout_6.setObjectName(u"gridLayout_6")
+        self.nbRecognizedPersons = QLabel(self.groupBox_4)
+        self.nbRecognizedPersons.setObjectName(u"nbRecognizedPersons")
+        self.nbRecognizedPersons.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_6.addWidget(self.nbRecognizedPersons, 0, 0, 1, 1)
+
+
+        self.gridLayout_9.addWidget(self.groupBox_4, 0, 3, 1, 1)
+
+        self.groupBox_5 = QGroupBox(self.widget)
+        self.groupBox_5.setObjectName(u"groupBox_5")
+        self.groupBox_5.setStyleSheet(u"font: 75 10pt \"MS Shell Dlg 2\";")
+        self.groupBox_5.setAlignment(Qt.AlignCenter)
+        self.gridLayout_7 = QGridLayout(self.groupBox_5)
+        self.gridLayout_7.setObjectName(u"gridLayout_7")
+        self.wrongPrediction = QLabel(self.groupBox_5)
+        self.wrongPrediction.setObjectName(u"wrongPrediction")
+        self.wrongPrediction.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_7.addWidget(self.wrongPrediction, 0, 0, 1, 1)
+
+
+        self.gridLayout_9.addWidget(self.groupBox_5, 1, 0, 1, 2)
+
+        self.groupBox_6 = QGroupBox(self.widget)
+        self.groupBox_6.setObjectName(u"groupBox_6")
+        self.groupBox_6.setStyleSheet(u"font: 75 10pt \"MS Shell Dlg 2\";")
+        self.groupBox_6.setAlignment(Qt.AlignCenter)
+        self.gridLayout_8 = QGridLayout(self.groupBox_6)
+        self.gridLayout_8.setObjectName(u"gridLayout_8")
+        self.truePredictions = QLabel(self.groupBox_6)
+        self.truePredictions.setObjectName(u"truePredictions")
+        self.truePredictions.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_8.addWidget(self.truePredictions, 0, 0, 1, 1)
+
+
+        self.gridLayout_9.addWidget(self.groupBox_6, 1, 2, 1, 1)
+
+        self.groupBox_7 = QGroupBox(self.widget)
+        self.groupBox_7.setObjectName(u"groupBox_7")
+        self.groupBox_7.setStyleSheet(u"font: 75 10pt \"MS Shell Dlg 2\";")
+        self.groupBox_7.setAlignment(Qt.AlignCenter)
+        self.gridLayout_10 = QGridLayout(self.groupBox_7)
+        self.gridLayout_10.setObjectName(u"gridLayout_10")
+        self.entrieslast7 = QLabel(self.groupBox_7)
+        self.entrieslast7.setObjectName(u"entrieslast7")
+        self.entrieslast7.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_10.addWidget(self.entrieslast7, 0, 0, 1, 1)
+
+
+        self.gridLayout_9.addWidget(self.groupBox_7, 1, 3, 1, 1)
+
         self.stackedWidget.addWidget(self.dashboard_page)
         self.Users_page = QWidget()
         self.Users_page.setObjectName(u"Users_page")
@@ -470,7 +585,7 @@ class Ui_MainWindow(object):
 
         self.stackedWidget.addWidget(self.page)
 
-        self.gridLayout.addWidget(self.stackedWidget, 1, 3, 1, 1)
+        self.gridLayout.addWidget(self.stackedWidget, 1, 2, 1, 1)
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
@@ -491,11 +606,25 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.admin.setText(QCoreApplication.translate("MainWindow", u"Amine", None))
-        self.timestamps.setText(QCoreApplication.translate("MainWindow", u"timestamps", None))
         self.title.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.title2.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
+        self.admin.setText(QCoreApplication.translate("MainWindow", u"Amine", None))
+        self.timestamps.setText(QCoreApplication.translate("MainWindow", u"timestamps", None))
+        self.groupBox.setTitle(QCoreApplication.translate("MainWindow", u"Total Users", None))
+        self.nbUsers.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.groupBox_3.setTitle(QCoreApplication.translate("MainWindow", u"Entries Today", None))
+        self.entriesToday.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.groupBox_2.setTitle(QCoreApplication.translate("MainWindow", u"Unrecognized Persons Today", None))
+        self.nbUnrecognizedToday.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.groupBox_4.setTitle(QCoreApplication.translate("MainWindow", u"Recognized Persons Today", None))
+        self.nbRecognizedPersons.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.groupBox_5.setTitle(QCoreApplication.translate("MainWindow", u"Number of wrong predictions", None))
+        self.wrongPrediction.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.groupBox_6.setTitle(QCoreApplication.translate("MainWindow", u"Number of true predictions", None))
+        self.truePredictions.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.groupBox_7.setTitle(QCoreApplication.translate("MainWindow", u"Entries Last 7 days", None))
+        self.entrieslast7.setText(QCoreApplication.translate("MainWindow", u"0", None))
         ___qtablewidgetitem = self.tableUsers.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"Id", None));
         ___qtablewidgetitem1 = self.tableUsers.horizontalHeaderItem(1)

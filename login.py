@@ -4,6 +4,8 @@ from PySide6.QtGui import QIcon, QPixmap, QCursor
 from PySide6.QtWidgets import QApplication, QDialog, QLineEdit, QMessageBox
 from PySide6.QtWidgets import QLabel, QPushButton
 import sqlite3
+from main import MainWindow
+
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
@@ -84,7 +86,7 @@ class LoginDialog(QDialog):
 
         # Attempt to login
         if self.authenticate_user(email, password):
-            QMessageBox.information(self, "Success", "Login successful!")
+            self.open_main_interface(email)
         else:
             QMessageBox.warning(self, "Error", "Invalid email or password!")
 
@@ -107,6 +109,13 @@ class LoginDialog(QDialog):
             QMessageBox.critical(self, "Database Error", f"An error occurred: {e}")
             return False
 
+    def open_main_interface(self, user_name):
+        # Hide the login window
+        self.hide()
+        
+        # Create and show the main interface
+        self.main_window = MainWindow(user_name)
+        self.main_window.show()
 
 if __name__ == "__main__":
     app = QApplication([])
