@@ -111,6 +111,7 @@ class DatabaseManager:
                 AccessLogs
             INNER JOIN 
                 Users ON AccessLogs.user_id = Users.user_id
+            order by AccessLogs.log_id desc
         """
         self.cursor.execute(query)
         return self.cursor.fetchall()
@@ -148,7 +149,7 @@ class DatabaseManager:
 
     def fetch_feedback(self):
         """Read all feedbacks."""
-        query = "SELECT * FROM Feedback"
+        query = "SELECT * FROM Feedback order by idfeed desc"
         self.cursor.execute(query)
         return self.cursor.fetchall()
     

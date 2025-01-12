@@ -1126,6 +1126,7 @@ class MainWindow(QMainWindow):
                 QMessageBox.warning(self, "Input Error", "All fields are required!")
                 return
         self.db_manager.update_settings(treshhold,email_sender,email_receiver,password)
+        QMessageBox.information(self, "Success", "Settings updated successfully")
 
 
 if __name__ == "__main__":
