@@ -92,7 +92,7 @@ class LoginDialog(QDialog):
 
     def authenticate_user(self, email, password):
         # Connect to SQLite database
-        try:
+        try: 
             connection = sqlite3.connect("db/face_recognition.db")
             cursor = connection.cursor()
 

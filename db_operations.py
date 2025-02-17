@@ -126,8 +126,7 @@ class DatabaseManager:
             SELECT 
                 AccessLogs.log_id, 
                 Users.name AS user_name, 
-                AccessLogs.timestamp ,
-                AccessLogs.emotion 
+                AccessLogs.timestamp 
             FROM 
                 AccessLogs
             INNER JOIN 
@@ -194,7 +193,7 @@ class DatabaseManager:
         self.cursor.execute(query)
         result = self.cursor.fetchone() 
         return result[0] 
-    
+
     def fetch_setttings(self):
         query = "SELECT threshold,email_sender,email_receiver,password FROM Settings where setting_id = 1"
         self.cursor.execute(query)

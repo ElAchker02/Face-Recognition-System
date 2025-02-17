@@ -15,6 +15,16 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
+    <item row="1" column="0">
+     <widget class="QListWidget" name="listWidget_icon">
+      <property name="maximumSize">
+       <size>
+        <width>50</width>
+        <height>16777215</height>
+       </size>
+      </property>
+     </widget>
+    </item>
     <item row="1" column="1">
      <widget class="QListWidget" name="listWidget">
       <property name="maximumSize">
@@ -25,14 +35,42 @@
       </property>
      </widget>
     </item>
-    <item row="1" column="0">
-     <widget class="QListWidget" name="listWidget_icon">
-      <property name="maximumSize">
-       <size>
-        <width>50</width>
-        <height>16777215</height>
-       </size>
+    <item row="0" column="2" colspan="2">
+     <widget class="QFrame" name="frame_2">
+      <property name="styleSheet">
+       <string notr="true">font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
       </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QLabel" name="admin">
+         <property name="styleSheet">
+          <string notr="true">font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
+         </property>
+         <property name="text">
+          <string>Amine</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="timestamps">
+         <property name="styleSheet">
+          <string notr="true">font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
+         </property>
+         <property name="text">
+          <string>timestamps</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </item>
     <item row="0" column="0" colspan="2">
@@ -68,48 +106,13 @@
       </layout>
      </widget>
     </item>
-    <item row="0" column="2" colspan="2">
-     <widget class="QFrame" name="frame_2">
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
-       <item>
-        <widget class="QLabel" name="admin">
-         <property name="styleSheet">
-          <string notr="true">font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
-         </property>
-         <property name="text">
-          <string>Amine</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="timestamps">
-         <property name="styleSheet">
-          <string notr="true">font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
-         </property>
-         <property name="text">
-          <string>timestamps</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
     <item row="1" column="2">
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="dashboard_page">
-       <widget class="QWidget" name="">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
           <x>30</x>
@@ -124,6 +127,15 @@
          </property>
          <item row="0" column="0">
           <widget class="QGroupBox" name="groupBox">
+           <property name="font">
+            <font>
+             <family>MS Shell Dlg 2</family>
+             <pointsize>10</pointsize>
+             <weight>9</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
            <property name="styleSheet">
             <string notr="true">font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
            </property>
@@ -136,6 +148,9 @@
            <layout class="QGridLayout" name="gridLayout_3">
             <item row="0" column="0">
              <widget class="QLabel" name="nbUsers">
+              <property name="styleSheet">
+               <string notr="true">font: 75 22pt &quot;MS Shell Dlg 2&quot;;</string>
+              </property>
               <property name="text">
                <string>0</string>
               </property>
@@ -161,6 +176,9 @@
            <layout class="QGridLayout" name="gridLayout_5">
             <item row="0" column="0">
              <widget class="QLabel" name="entriesToday">
+              <property name="styleSheet">
+               <string notr="true">font: 75 22pt &quot;MS Shell Dlg 2&quot;;</string>
+              </property>
               <property name="text">
                <string>0</string>
               </property>
@@ -172,57 +190,7 @@
            </layout>
           </widget>
          </item>
-         <item row="0" column="2">
-          <widget class="QGroupBox" name="groupBox_2">
-           <property name="styleSheet">
-            <string notr="true">font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
-           </property>
-           <property name="title">
-            <string>Unrecognized Persons Today</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-           <layout class="QGridLayout" name="gridLayout_4">
-            <item row="0" column="0">
-             <widget class="QLabel" name="nbUnrecognizedToday">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item row="0" column="3">
-          <widget class="QGroupBox" name="groupBox_4">
-           <property name="styleSheet">
-            <string notr="true">font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
-           </property>
-           <property name="title">
-            <string>Recognized Persons Today</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-           <layout class="QGridLayout" name="gridLayout_6">
-            <item row="0" column="0">
-             <widget class="QLabel" name="nbRecognizedPersons">
-              <property name="text">
-               <string>0</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item row="1" column="0" colspan="2">
+         <item row="1" column="0">
           <widget class="QGroupBox" name="groupBox_5">
            <property name="styleSheet">
             <string notr="true">font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
@@ -236,6 +204,9 @@
            <layout class="QGridLayout" name="gridLayout_7">
             <item row="0" column="0">
              <widget class="QLabel" name="wrongPrediction">
+              <property name="styleSheet">
+               <string notr="true">font: 75 22pt &quot;MS Shell Dlg 2&quot;;</string>
+              </property>
               <property name="text">
                <string>0</string>
               </property>
@@ -247,7 +218,7 @@
            </layout>
           </widget>
          </item>
-         <item row="1" column="2">
+         <item row="0" column="3">
           <widget class="QGroupBox" name="groupBox_6">
            <property name="styleSheet">
             <string notr="true">font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
@@ -261,6 +232,9 @@
            <layout class="QGridLayout" name="gridLayout_8">
             <item row="0" column="0">
              <widget class="QLabel" name="truePredictions">
+              <property name="styleSheet">
+               <string notr="true">font: 75 22pt &quot;MS Shell Dlg 2&quot;;</string>
+              </property>
               <property name="text">
                <string>0</string>
               </property>
@@ -286,6 +260,9 @@
            <layout class="QGridLayout" name="gridLayout_10">
             <item row="0" column="0">
              <widget class="QLabel" name="entrieslast7">
+              <property name="styleSheet">
+               <string notr="true">font: 75 22pt &quot;MS Shell Dlg 2&quot;;</string>
+              </property>
               <property name="text">
                <string>0</string>
               </property>
@@ -369,6 +346,9 @@
            <height>21</height>
           </rect>
          </property>
+         <property name="styleSheet">
+          <string notr="true">font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
+         </property>
          <property name="text">
           <string>Users</string>
          </property>
@@ -426,27 +406,6 @@
           </property>
          </item>
         </widget>
-        <widget class="QPushButton" name="btnAddUser">
-         <property name="geometry">
-          <rect>
-           <x>593</x>
-           <y>30</y>
-           <width>93</width>
-           <height>30</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(85, 170, 255);</string>
-         </property>
-         <property name="text">
-          <string>Add</string>
-         </property>
-         <property name="icon">
-          <iconset>
-           <normaloff>../icon/add.png</normaloff>../icon/add.png</iconset>
-         </property>
-        </widget>
         <widget class="QPushButton" name="btnRefreshUser">
          <property name="geometry">
           <rect>
@@ -465,27 +424,6 @@ background-color: rgb(85, 170, 255);</string>
          <property name="icon">
           <iconset>
            <normaloff>../icon/ref.png</normaloff>../icon/ref.png</iconset>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="btnExportUser">
-         <property name="geometry">
-          <rect>
-           <x>1180</x>
-           <y>30</y>
-           <width>93</width>
-           <height>30</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(0, 255, 0);</string>
-         </property>
-         <property name="text">
-          <string>Export</string>
-         </property>
-         <property name="icon">
-          <iconset>
-           <normaloff>../icon/export.png</normaloff>../icon/export.png</iconset>
          </property>
         </widget>
         <widget class="QPushButton" name="btnSearchUsers">
@@ -509,47 +447,70 @@ background-color: rgb(85, 170, 255);</string>
            <normaloff>../icon/search.png</normaloff>../icon/search.png</iconset>
          </property>
         </widget>
-        <widget class="QPushButton" name="btnUpdateUser">
+        <widget class="QSplitter" name="splitter">
          <property name="geometry">
           <rect>
-           <x>720</x>
+           <x>593</x>
            <y>30</y>
-           <width>93</width>
+           <width>372</width>
            <height>30</height>
           </rect>
          </property>
-         <property name="styleSheet">
-          <string notr="true">color: rgb(255, 255, 255);
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <widget class="QPushButton" name="btnAddUser">
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(85, 170, 255);</string>
+          </property>
+          <property name="text">
+           <string>Add</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>../icon/add.png</normaloff>../icon/add.png</iconset>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="btnUpdateUser">
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);
 background-color: rgb(0, 0, 0);</string>
-         </property>
-         <property name="text">
-          <string>Update</string>
-         </property>
-         <property name="icon">
-          <iconset>
-           <normaloff>../icon/updae.png</normaloff>../icon/updae.png</iconset>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="btnRmoveUser">
-         <property name="geometry">
-          <rect>
-           <x>850</x>
-           <y>30</y>
-           <width>93</width>
-           <height>30</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">color: rgb(255, 255, 255);
+          </property>
+          <property name="text">
+           <string>Update</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>../icon/updae.png</normaloff>../icon/updae.png</iconset>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="btnRmoveUser">
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);
 background-color: rgb(255, 0, 0);</string>
-         </property>
-         <property name="text">
-          <string>Remove</string>
-         </property>
-         <property name="icon">
-          <iconset>
-           <normaloff>../icon/trash.png</normaloff>../icon/trash.png</iconset>
-         </property>
+          </property>
+          <property name="text">
+           <string>Remove</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>../icon/trash.png</normaloff>../icon/trash.png</iconset>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="btnExportUser">
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(0, 255, 0);</string>
+          </property>
+          <property name="text">
+           <string>Export</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>../icon/export.png</normaloff>../icon/export.png</iconset>
+          </property>
+         </widget>
         </widget>
        </widget>
       </widget>
@@ -699,11 +660,6 @@ background-color: rgb(85, 170, 255);</string>
         <column>
          <property name="text">
           <string>Timstamp</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Emotion</string>
          </property>
         </column>
        </widget>
@@ -1150,9 +1106,12 @@ background-color: rgb(0, 255, 0);</string>
          <rect>
           <x>80</x>
           <y>40</y>
-          <width>71</width>
+          <width>91</width>
           <height>21</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
         </property>
         <property name="text">
          <string>Feed back</string>
@@ -1163,9 +1122,12 @@ background-color: rgb(0, 255, 0);</string>
          <rect>
           <x>240</x>
           <y>40</y>
-          <width>121</width>
+          <width>141</width>
           <height>16</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
         </property>
         <property name="text">
          <string>Prediction State :</string>

@@ -15,6 +15,7 @@ import xlsxwriter
 from datetime import datetime
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -23,14 +24,31 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
         self.gridLayout.setObjectName("gridLayout")
-        self.listWidget = QtWidgets.QListWidget(parent=self.centralwidget)
-        self.listWidget.setMaximumSize(QtCore.QSize(200, 16777215))
-        self.listWidget.setObjectName("listWidget")
-        self.gridLayout.addWidget(self.listWidget, 1, 1, 1, 1)
         self.listWidget_icon = QtWidgets.QListWidget(parent=self.centralwidget)
         self.listWidget_icon.setMaximumSize(QtCore.QSize(50, 16777215))
         self.listWidget_icon.setObjectName("listWidget_icon")
         self.gridLayout.addWidget(self.listWidget_icon, 1, 0, 1, 1)
+        self.listWidget = QtWidgets.QListWidget(parent=self.centralwidget)
+        self.listWidget.setMaximumSize(QtCore.QSize(200, 16777215))
+        self.listWidget.setObjectName("listWidget")
+        self.gridLayout.addWidget(self.listWidget, 1, 1, 1, 1)
+        self.frame_2 = QtWidgets.QFrame(parent=self.centralwidget)
+        self.frame_2.setStyleSheet("font: 75 10pt \"MS Shell Dlg 2\";")
+        self.frame_2.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.frame_2.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame_2.setObjectName("frame_2")
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.frame_2)
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.admin = QtWidgets.QLabel(parent=self.frame_2)
+        self.admin.setStyleSheet("font: 75 10pt \"MS Shell Dlg 2\";")
+        self.admin.setObjectName("admin")
+        self.horizontalLayout_2.addWidget(self.admin)
+        self.timestamps = QtWidgets.QLabel(parent=self.frame_2)
+        self.timestamps.setStyleSheet("font: 75 10pt \"MS Shell Dlg 2\";")
+        self.timestamps.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight|QtCore.Qt.AlignmentFlag.AlignTrailing|QtCore.Qt.AlignmentFlag.AlignVCenter)
+        self.timestamps.setObjectName("timestamps")
+        self.horizontalLayout_2.addWidget(self.timestamps)
+        self.gridLayout.addWidget(self.frame_2, 0, 2, 1, 2)
         self.title_frame = QtWidgets.QFrame(parent=self.centralwidget)
         self.title_frame.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.title_frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
@@ -47,106 +65,80 @@ class Ui_MainWindow(object):
         self.pushButton.setObjectName("pushButton")
         self.horizontalLayout.addWidget(self.pushButton)
         self.gridLayout.addWidget(self.title_frame, 0, 0, 1, 2)
-        self.frame_2 = QtWidgets.QFrame(parent=self.centralwidget)
-        self.frame_2.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.frame_2.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame_2.setObjectName("frame_2")
-        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.frame_2)
-        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.admin = QtWidgets.QLabel(parent=self.frame_2)
-        self.admin.setStyleSheet("font: 75 10pt \"MS Shell Dlg 2\";")
-        self.admin.setObjectName("admin")
-        self.horizontalLayout_2.addWidget(self.admin)
-        self.timestamps = QtWidgets.QLabel(parent=self.frame_2)
-        self.timestamps.setStyleSheet("font: 75 10pt \"MS Shell Dlg 2\";")
-        self.timestamps.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight|QtCore.Qt.AlignmentFlag.AlignTrailing|QtCore.Qt.AlignmentFlag.AlignVCenter)
-        self.timestamps.setObjectName("timestamps")
-        self.horizontalLayout_2.addWidget(self.timestamps)
-        self.gridLayout.addWidget(self.frame_2, 0, 2, 1, 2)
         self.stackedWidget = QtWidgets.QStackedWidget(parent=self.centralwidget)
         self.stackedWidget.setObjectName("stackedWidget")
         self.dashboard_page = QtWidgets.QWidget()
         self.dashboard_page.setObjectName("dashboard_page")
-        self.widget = QtWidgets.QWidget(parent=self.dashboard_page)
-        self.widget.setGeometry(QtCore.QRect(30, 60, 1251, 521))
-        self.widget.setObjectName("widget")
-        self.gridLayout_9 = QtWidgets.QGridLayout(self.widget)
+        self.layoutWidget = QtWidgets.QWidget(parent=self.dashboard_page)
+        self.layoutWidget.setGeometry(QtCore.QRect(30, 60, 1251, 521))
+        self.layoutWidget.setObjectName("layoutWidget")
+        self.gridLayout_9 = QtWidgets.QGridLayout(self.layoutWidget)
         self.gridLayout_9.setSizeConstraint(QtWidgets.QLayout.SizeConstraint.SetDefaultConstraint)
         self.gridLayout_9.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_9.setObjectName("gridLayout_9")
-        self.groupBox = QtWidgets.QGroupBox(parent=self.widget)
+        self.groupBox = QtWidgets.QGroupBox(parent=self.layoutWidget)
+        font = QtGui.QFont()
+        font.setFamily("MS Shell Dlg 2")
+        font.setPointSize(10)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(9)
+        self.groupBox.setFont(font)
         self.groupBox.setStyleSheet("font: 75 10pt \"MS Shell Dlg 2\";")
         self.groupBox.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.groupBox.setObjectName("groupBox")
         self.gridLayout_3 = QtWidgets.QGridLayout(self.groupBox)
         self.gridLayout_3.setObjectName("gridLayout_3")
         self.nbUsers = QtWidgets.QLabel(parent=self.groupBox)
+        self.nbUsers.setStyleSheet("font: 75 22pt \"MS Shell Dlg 2\";")
         self.nbUsers.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.nbUsers.setObjectName("nbUsers")
         self.gridLayout_3.addWidget(self.nbUsers, 0, 0, 1, 1)
         self.gridLayout_9.addWidget(self.groupBox, 0, 0, 1, 1)
-        self.groupBox_3 = QtWidgets.QGroupBox(parent=self.widget)
+        self.groupBox_3 = QtWidgets.QGroupBox(parent=self.layoutWidget)
         self.groupBox_3.setStyleSheet("font: 75 10pt \"MS Shell Dlg 2\";")
         self.groupBox_3.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.groupBox_3.setObjectName("groupBox_3")
         self.gridLayout_5 = QtWidgets.QGridLayout(self.groupBox_3)
         self.gridLayout_5.setObjectName("gridLayout_5")
         self.entriesToday = QtWidgets.QLabel(parent=self.groupBox_3)
+        self.entriesToday.setStyleSheet("font: 75 22pt \"MS Shell Dlg 2\";")
         self.entriesToday.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.entriesToday.setObjectName("entriesToday")
         self.gridLayout_5.addWidget(self.entriesToday, 0, 0, 1, 1)
         self.gridLayout_9.addWidget(self.groupBox_3, 0, 1, 1, 1)
-        self.groupBox_2 = QtWidgets.QGroupBox(parent=self.widget)
-        self.groupBox_2.setStyleSheet("font: 75 10pt \"MS Shell Dlg 2\";")
-        self.groupBox_2.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.groupBox_2.setObjectName("groupBox_2")
-        self.gridLayout_4 = QtWidgets.QGridLayout(self.groupBox_2)
-        self.gridLayout_4.setObjectName("gridLayout_4")
-        self.nbUnrecognizedToday = QtWidgets.QLabel(parent=self.groupBox_2)
-        self.nbUnrecognizedToday.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.nbUnrecognizedToday.setObjectName("nbUnrecognizedToday")
-        self.gridLayout_4.addWidget(self.nbUnrecognizedToday, 0, 0, 1, 1)
-        self.gridLayout_9.addWidget(self.groupBox_2, 0, 2, 1, 1)
-        self.groupBox_4 = QtWidgets.QGroupBox(parent=self.widget)
-        self.groupBox_4.setStyleSheet("font: 75 10pt \"MS Shell Dlg 2\";")
-        self.groupBox_4.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.groupBox_4.setObjectName("groupBox_4")
-        self.gridLayout_6 = QtWidgets.QGridLayout(self.groupBox_4)
-        self.gridLayout_6.setObjectName("gridLayout_6")
-        self.nbRecognizedPersons = QtWidgets.QLabel(parent=self.groupBox_4)
-        self.nbRecognizedPersons.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.nbRecognizedPersons.setObjectName("nbRecognizedPersons")
-        self.gridLayout_6.addWidget(self.nbRecognizedPersons, 0, 0, 1, 1)
-        self.gridLayout_9.addWidget(self.groupBox_4, 0, 3, 1, 1)
-        self.groupBox_5 = QtWidgets.QGroupBox(parent=self.widget)
+        self.groupBox_5 = QtWidgets.QGroupBox(parent=self.layoutWidget)
         self.groupBox_5.setStyleSheet("font: 75 10pt \"MS Shell Dlg 2\";")
         self.groupBox_5.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.groupBox_5.setObjectName("groupBox_5")
         self.gridLayout_7 = QtWidgets.QGridLayout(self.groupBox_5)
         self.gridLayout_7.setObjectName("gridLayout_7")
         self.wrongPrediction = QtWidgets.QLabel(parent=self.groupBox_5)
+        self.wrongPrediction.setStyleSheet("font: 75 22pt \"MS Shell Dlg 2\";")
         self.wrongPrediction.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.wrongPrediction.setObjectName("wrongPrediction")
         self.gridLayout_7.addWidget(self.wrongPrediction, 0, 0, 1, 1)
-        self.gridLayout_9.addWidget(self.groupBox_5, 1, 0, 1, 2)
-        self.groupBox_6 = QtWidgets.QGroupBox(parent=self.widget)
+        self.gridLayout_9.addWidget(self.groupBox_5, 1, 0, 1, 1)
+        self.groupBox_6 = QtWidgets.QGroupBox(parent=self.layoutWidget)
         self.groupBox_6.setStyleSheet("font: 75 10pt \"MS Shell Dlg 2\";")
         self.groupBox_6.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.groupBox_6.setObjectName("groupBox_6")
         self.gridLayout_8 = QtWidgets.QGridLayout(self.groupBox_6)
         self.gridLayout_8.setObjectName("gridLayout_8")
         self.truePredictions = QtWidgets.QLabel(parent=self.groupBox_6)
+        self.truePredictions.setStyleSheet("font: 75 22pt \"MS Shell Dlg 2\";")
         self.truePredictions.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.truePredictions.setObjectName("truePredictions")
         self.gridLayout_8.addWidget(self.truePredictions, 0, 0, 1, 1)
-        self.gridLayout_9.addWidget(self.groupBox_6, 1, 2, 1, 1)
-        self.groupBox_7 = QtWidgets.QGroupBox(parent=self.widget)
+        self.gridLayout_9.addWidget(self.groupBox_6, 0, 3, 1, 1)
+        self.groupBox_7 = QtWidgets.QGroupBox(parent=self.layoutWidget)
         self.groupBox_7.setStyleSheet("font: 75 10pt \"MS Shell Dlg 2\";")
         self.groupBox_7.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.groupBox_7.setObjectName("groupBox_7")
         self.gridLayout_10 = QtWidgets.QGridLayout(self.groupBox_7)
         self.gridLayout_10.setObjectName("gridLayout_10")
         self.entrieslast7 = QtWidgets.QLabel(parent=self.groupBox_7)
+        self.entrieslast7.setStyleSheet("font: 75 22pt \"MS Shell Dlg 2\";")
         self.entrieslast7.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.entrieslast7.setObjectName("entrieslast7")
         self.gridLayout_10.addWidget(self.entrieslast7, 0, 0, 1, 1)
@@ -179,6 +171,7 @@ class Ui_MainWindow(object):
         self.frame_6.setObjectName("frame_6")
         self.label_2 = QtWidgets.QLabel(parent=self.frame_6)
         self.label_2.setGeometry(QtCore.QRect(70, 30, 42, 21))
+        self.label_2.setStyleSheet("font: 75 10pt \"MS Shell Dlg 2\";")
         self.label_2.setObjectName("label_2")
         self.label_7 = QtWidgets.QLabel(parent=self.frame_6)
         self.label_7.setGeometry(QtCore.QRect(147, 30, 83, 21))
@@ -193,55 +186,55 @@ class Ui_MainWindow(object):
         self.cmbUsers.addItem("")
         self.cmbUsers.addItem("")
         self.cmbUsers.addItem("")
-        self.btnAddUser = QtWidgets.QPushButton(parent=self.frame_6)
-        self.btnAddUser.setGeometry(QtCore.QRect(593, 30, 93, 30))
-        self.btnAddUser.setStyleSheet("color: rgb(255, 255, 255);\n"
-"background-color: rgb(85, 170, 255);")
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(".\\uis\\../icon/add.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.btnAddUser.setIcon(icon)
-        self.btnAddUser.setObjectName("btnAddUser")
         self.btnRefreshUser = QtWidgets.QPushButton(parent=self.frame_6)
         self.btnRefreshUser.setGeometry(QtCore.QRect(10, 30, 41, 30))
         self.btnRefreshUser.setStyleSheet("background-color: rgb(85, 170, 255);")
         self.btnRefreshUser.setText("")
-        icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(".\\uis\\../icon/ref.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.btnRefreshUser.setIcon(icon1)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(".\\uis\\../icon/ref.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.btnRefreshUser.setIcon(icon)
         self.btnRefreshUser.setObjectName("btnRefreshUser")
-        self.btnExportUser = QtWidgets.QPushButton(parent=self.frame_6)
-        self.btnExportUser.setGeometry(QtCore.QRect(1180, 30, 93, 30))
-        self.btnExportUser.setStyleSheet("color: rgb(255, 255, 255);\n"
-"background-color: rgb(0, 255, 0);")
-        icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap(".\\uis\\../icon/export.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.btnExportUser.setIcon(icon2)
-        self.btnExportUser.setObjectName("btnExportUser")
         self.btnSearchUsers = QtWidgets.QPushButton(parent=self.frame_6)
         self.btnSearchUsers.setGeometry(QtCore.QRect(530, 30, 41, 30))
         self.btnSearchUsers.setStyleSheet("color: rgb(255, 255, 255);\n"
 "background-color: rgb(85, 170, 255);")
         self.btnSearchUsers.setText("")
-        icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap(".\\uis\\../icon/search.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.btnSearchUsers.setIcon(icon3)
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap(".\\uis\\../icon/search.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.btnSearchUsers.setIcon(icon1)
         self.btnSearchUsers.setObjectName("btnSearchUsers")
-        self.btnUpdateUser = QtWidgets.QPushButton(parent=self.frame_6)
-        self.btnUpdateUser.setGeometry(QtCore.QRect(720, 30, 93, 30))
+        self.splitter = QtWidgets.QSplitter(parent=self.frame_6)
+        self.splitter.setGeometry(QtCore.QRect(593, 30, 372, 30))
+        self.splitter.setOrientation(QtCore.Qt.Orientation.Horizontal)
+        self.splitter.setObjectName("splitter")
+        self.btnAddUser = QtWidgets.QPushButton(parent=self.splitter)
+        self.btnAddUser.setStyleSheet("color: rgb(255, 255, 255);\n"
+"background-color: rgb(85, 170, 255);")
+        icon2 = QtGui.QIcon()
+        icon2.addPixmap(QtGui.QPixmap(".\\uis\\../icon/add.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.btnAddUser.setIcon(icon2)
+        self.btnAddUser.setObjectName("btnAddUser")
+        self.btnUpdateUser = QtWidgets.QPushButton(parent=self.splitter)
         self.btnUpdateUser.setStyleSheet("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 0);")
-        icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap(".\\uis\\../icon/updae.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.btnUpdateUser.setIcon(icon4)
+        icon3 = QtGui.QIcon()
+        icon3.addPixmap(QtGui.QPixmap(".\\uis\\../icon/updae.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.btnUpdateUser.setIcon(icon3)
         self.btnUpdateUser.setObjectName("btnUpdateUser")
-        self.btnRmoveUser = QtWidgets.QPushButton(parent=self.frame_6)
-        self.btnRmoveUser.setGeometry(QtCore.QRect(850, 30, 93, 30))
+        self.btnRmoveUser = QtWidgets.QPushButton(parent=self.splitter)
         self.btnRmoveUser.setStyleSheet("color: rgb(255, 255, 255);\n"
 "background-color: rgb(255, 0, 0);")
-        icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap(".\\uis\\../icon/trash.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.btnRmoveUser.setIcon(icon5)
+        icon4 = QtGui.QIcon()
+        icon4.addPixmap(QtGui.QPixmap(".\\uis\\../icon/trash.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.btnRmoveUser.setIcon(icon4)
         self.btnRmoveUser.setObjectName("btnRmoveUser")
+        self.btnExportUser = QtWidgets.QPushButton(parent=self.splitter)
+        self.btnExportUser.setStyleSheet("color: rgb(255, 255, 255);\n"
+"background-color: rgb(0, 255, 0);")
+        icon5 = QtGui.QIcon()
+        icon5.addPixmap(QtGui.QPixmap(".\\uis\\../icon/export.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.btnExportUser.setIcon(icon5)
+        self.btnExportUser.setObjectName("btnExportUser")
         self.stackedWidget.addWidget(self.Users_page)
         self.logs_page = QtWidgets.QWidget()
         self.logs_page.setObjectName("logs_page")
@@ -258,13 +251,13 @@ class Ui_MainWindow(object):
         self.bntRefreshLogs.setGeometry(QtCore.QRect(10, 30, 41, 30))
         self.bntRefreshLogs.setStyleSheet("background-color: rgb(85, 170, 255);")
         self.bntRefreshLogs.setText("")
-        self.bntRefreshLogs.setIcon(icon1)
+        self.bntRefreshLogs.setIcon(icon)
         self.bntRefreshLogs.setObjectName("bntRefreshLogs")
         self.btnExportLogs = QtWidgets.QPushButton(parent=self.frame_3)
         self.btnExportLogs.setGeometry(QtCore.QRect(1180, 30, 93, 30))
         self.btnExportLogs.setStyleSheet("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 255, 0);")
-        self.btnExportLogs.setIcon(icon2)
+        self.btnExportLogs.setIcon(icon5)
         self.btnExportLogs.setObjectName("btnExportLogs")
         self.dateEdit_1 = QtWidgets.QDateEdit(parent=self.frame_3)
         self.dateEdit_1.setGeometry(QtCore.QRect(230, 30, 110, 22))
@@ -274,7 +267,7 @@ class Ui_MainWindow(object):
         self.btnSearchLogs.setStyleSheet("color: rgb(255, 255, 255);\n"
 "background-color: rgb(85, 170, 255);")
         self.btnSearchLogs.setText("")
-        self.btnSearchLogs.setIcon(icon3)
+        self.btnSearchLogs.setIcon(icon1)
         self.btnSearchLogs.setObjectName("btnSearchLogs")
         self.dateEdit_2 = QtWidgets.QDateEdit(parent=self.frame_3)
         self.dateEdit_2.setGeometry(QtCore.QRect(390, 30, 110, 22))
@@ -285,7 +278,7 @@ class Ui_MainWindow(object):
         self.tableLogs.setSelectionMode(QtWidgets.QAbstractItemView.SelectionMode.ExtendedSelection)
         self.tableLogs.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectionBehavior.SelectRows)
         self.tableLogs.setObjectName("tableLogs")
-        self.tableLogs.setColumnCount(4)
+        self.tableLogs.setColumnCount(3)
         self.tableLogs.setRowCount(0)
         item = QtWidgets.QTableWidgetItem()
         self.tableLogs.setHorizontalHeaderItem(0, item)
@@ -293,8 +286,6 @@ class Ui_MainWindow(object):
         self.tableLogs.setHorizontalHeaderItem(1, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableLogs.setHorizontalHeaderItem(2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableLogs.setHorizontalHeaderItem(3, item)
         self.stackedWidget.addWidget(self.logs_page)
         self.departements_page = QtWidgets.QWidget()
         self.departements_page.setObjectName("departements_page")
@@ -308,7 +299,7 @@ class Ui_MainWindow(object):
         self.btnRefreshDep.setGeometry(QtCore.QRect(12, 12, 33, 29))
         self.btnRefreshDep.setStyleSheet("background-color: rgb(85, 170, 255);")
         self.btnRefreshDep.setText("")
-        self.btnRefreshDep.setIcon(icon1)
+        self.btnRefreshDep.setIcon(icon)
         self.btnRefreshDep.setObjectName("btnRefreshDep")
         self.label_6 = QtWidgets.QLabel(parent=self.frame_4)
         self.label_6.setGeometry(QtCore.QRect(60, 10, 250, 30))
@@ -329,25 +320,25 @@ class Ui_MainWindow(object):
         self.btnUpdateDep.setGeometry(QtCore.QRect(440, 10, 93, 29))
         self.btnUpdateDep.setStyleSheet("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 0);")
-        self.btnUpdateDep.setIcon(icon4)
+        self.btnUpdateDep.setIcon(icon3)
         self.btnUpdateDep.setObjectName("btnUpdateDep")
         self.btnRemoveDep = QtWidgets.QPushButton(parent=self.departements_page)
         self.btnRemoveDep.setGeometry(QtCore.QRect(564, 10, 93, 29))
         self.btnRemoveDep.setStyleSheet("color: rgb(255, 255, 255);\n"
 "background-color: rgb(255, 0, 0);")
-        self.btnRemoveDep.setIcon(icon5)
+        self.btnRemoveDep.setIcon(icon4)
         self.btnRemoveDep.setObjectName("btnRemoveDep")
         self.btnAddDepartements = QtWidgets.QPushButton(parent=self.departements_page)
         self.btnAddDepartements.setGeometry(QtCore.QRect(689, 10, 93, 29))
         self.btnAddDepartements.setStyleSheet("color: rgb(255, 255, 255);\n"
 "background-color: rgb(85, 170, 255);")
-        self.btnAddDepartements.setIcon(icon)
+        self.btnAddDepartements.setIcon(icon2)
         self.btnAddDepartements.setObjectName("btnAddDepartements")
         self.btnExportDepartements = QtWidgets.QPushButton(parent=self.departements_page)
         self.btnExportDepartements.setGeometry(QtCore.QRect(813, 10, 93, 29))
         self.btnExportDepartements.setStyleSheet("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 255, 0);")
-        self.btnExportDepartements.setIcon(icon2)
+        self.btnExportDepartements.setIcon(icon5)
         self.btnExportDepartements.setObjectName("btnExportDepartements")
         self.stackedWidget.addWidget(self.departements_page)
         self.admins_page = QtWidgets.QWidget()
@@ -365,36 +356,36 @@ class Ui_MainWindow(object):
         self.btnRefeshAdmins.setGeometry(QtCore.QRect(0, 30, 33, 29))
         self.btnRefeshAdmins.setStyleSheet("background-color: rgb(85, 170, 255);")
         self.btnRefeshAdmins.setText("")
-        self.btnRefeshAdmins.setIcon(icon1)
+        self.btnRefeshAdmins.setIcon(icon)
         self.btnRefeshAdmins.setObjectName("btnRefeshAdmins")
-        self.layoutWidget = QtWidgets.QWidget(parent=self.frame_5)
-        self.layoutWidget.setGeometry(QtCore.QRect(470, 30, 395, 32))
-        self.layoutWidget.setObjectName("layoutWidget")
-        self.horizontalLayout_4 = QtWidgets.QHBoxLayout(self.layoutWidget)
+        self.layoutWidget1 = QtWidgets.QWidget(parent=self.frame_5)
+        self.layoutWidget1.setGeometry(QtCore.QRect(470, 30, 395, 32))
+        self.layoutWidget1.setObjectName("layoutWidget1")
+        self.horizontalLayout_4 = QtWidgets.QHBoxLayout(self.layoutWidget1)
         self.horizontalLayout_4.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
-        self.btnUpdateAdmin = QtWidgets.QPushButton(parent=self.layoutWidget)
+        self.btnUpdateAdmin = QtWidgets.QPushButton(parent=self.layoutWidget1)
         self.btnUpdateAdmin.setStyleSheet("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 0);")
-        self.btnUpdateAdmin.setIcon(icon4)
+        self.btnUpdateAdmin.setIcon(icon3)
         self.btnUpdateAdmin.setObjectName("btnUpdateAdmin")
         self.horizontalLayout_4.addWidget(self.btnUpdateAdmin)
-        self.btnRemoveAdmin = QtWidgets.QPushButton(parent=self.layoutWidget)
+        self.btnRemoveAdmin = QtWidgets.QPushButton(parent=self.layoutWidget1)
         self.btnRemoveAdmin.setStyleSheet("color: rgb(255, 255, 255);\n"
 "background-color: rgb(255, 0, 0);")
-        self.btnRemoveAdmin.setIcon(icon5)
+        self.btnRemoveAdmin.setIcon(icon4)
         self.btnRemoveAdmin.setObjectName("btnRemoveAdmin")
         self.horizontalLayout_4.addWidget(self.btnRemoveAdmin)
-        self.btnAddAdmins = QtWidgets.QPushButton(parent=self.layoutWidget)
+        self.btnAddAdmins = QtWidgets.QPushButton(parent=self.layoutWidget1)
         self.btnAddAdmins.setStyleSheet("color: rgb(255, 255, 255);\n"
 "background-color: rgb(85, 170, 255);")
-        self.btnAddAdmins.setIcon(icon)
+        self.btnAddAdmins.setIcon(icon2)
         self.btnAddAdmins.setObjectName("btnAddAdmins")
         self.horizontalLayout_4.addWidget(self.btnAddAdmins)
-        self.btnExportAdmins = QtWidgets.QPushButton(parent=self.layoutWidget)
+        self.btnExportAdmins = QtWidgets.QPushButton(parent=self.layoutWidget1)
         self.btnExportAdmins.setStyleSheet("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 255, 0);")
-        self.btnExportAdmins.setIcon(icon2)
+        self.btnExportAdmins.setIcon(icon5)
         self.btnExportAdmins.setObjectName("btnExportAdmins")
         self.horizontalLayout_4.addWidget(self.btnExportAdmins)
         self.tableAdmins = QtWidgets.QTableWidget(parent=self.admins_page)
@@ -437,26 +428,28 @@ class Ui_MainWindow(object):
         self.btnRefreshFeedback.setGeometry(QtCore.QRect(20, 40, 41, 30))
         self.btnRefreshFeedback.setStyleSheet("background-color: rgb(85, 170, 255);")
         self.btnRefreshFeedback.setText("")
-        self.btnRefreshFeedback.setIcon(icon1)
+        self.btnRefreshFeedback.setIcon(icon)
         self.btnRefreshFeedback.setObjectName("btnRefreshFeedback")
         self.btnSearchFeedback = QtWidgets.QPushButton(parent=self.settings_page)
         self.btnSearchFeedback.setGeometry(QtCore.QRect(510, 40, 41, 30))
         self.btnSearchFeedback.setStyleSheet("color: rgb(255, 255, 255);\n"
 "background-color: rgb(85, 170, 255);")
         self.btnSearchFeedback.setText("")
-        self.btnSearchFeedback.setIcon(icon3)
+        self.btnSearchFeedback.setIcon(icon1)
         self.btnSearchFeedback.setObjectName("btnSearchFeedback")
         self.btnExporFeedback = QtWidgets.QPushButton(parent=self.settings_page)
         self.btnExporFeedback.setGeometry(QtCore.QRect(1190, 40, 93, 30))
         self.btnExporFeedback.setStyleSheet("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 255, 0);")
-        self.btnExporFeedback.setIcon(icon2)
+        self.btnExporFeedback.setIcon(icon5)
         self.btnExporFeedback.setObjectName("btnExporFeedback")
         self.label_4 = QtWidgets.QLabel(parent=self.settings_page)
-        self.label_4.setGeometry(QtCore.QRect(80, 40, 71, 21))
+        self.label_4.setGeometry(QtCore.QRect(80, 40, 91, 21))
+        self.label_4.setStyleSheet("font: 10pt \"MS Shell Dlg 2\";")
         self.label_4.setObjectName("label_4")
         self.label_8 = QtWidgets.QLabel(parent=self.settings_page)
-        self.label_8.setGeometry(QtCore.QRect(240, 40, 121, 16))
+        self.label_8.setGeometry(QtCore.QRect(240, 40, 141, 16))
+        self.label_8.setStyleSheet("font: 10pt \"MS Shell Dlg 2\";")
         self.label_8.setObjectName("label_8")
         self.cmbFeedback = QtWidgets.QComboBox(parent=self.settings_page)
         self.cmbFeedback.setGeometry(QtCore.QRect(380, 40, 73, 22))
@@ -470,44 +463,44 @@ class Ui_MainWindow(object):
         self.label.setGeometry(QtCore.QRect(560, 0, 231, 101))
         self.label.setStyleSheet("font: 75 30pt \"MS Shell Dlg 2\";")
         self.label.setObjectName("label")
-        self.layoutWidget1 = QtWidgets.QWidget(parent=self.page)
-        self.layoutWidget1.setGeometry(QtCore.QRect(20, 120, 471, 251))
-        self.layoutWidget1.setObjectName("layoutWidget1")
-        self.gridLayout_2 = QtWidgets.QGridLayout(self.layoutWidget1)
+        self.layoutWidget2 = QtWidgets.QWidget(parent=self.page)
+        self.layoutWidget2.setGeometry(QtCore.QRect(20, 120, 471, 251))
+        self.layoutWidget2.setObjectName("layoutWidget2")
+        self.gridLayout_2 = QtWidgets.QGridLayout(self.layoutWidget2)
         self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_2.setObjectName("gridLayout_2")
-        self.label_9 = QtWidgets.QLabel(parent=self.layoutWidget1)
+        self.label_9 = QtWidgets.QLabel(parent=self.layoutWidget2)
         self.label_9.setStyleSheet("font: 75 10pt \"MS Shell Dlg 2\";")
         self.label_9.setObjectName("label_9")
         self.gridLayout_2.addWidget(self.label_9, 0, 0, 1, 1)
-        self.txtEmailSender = QtWidgets.QLineEdit(parent=self.layoutWidget1)
+        self.txtEmailSender = QtWidgets.QLineEdit(parent=self.layoutWidget2)
         self.txtEmailSender.setObjectName("txtEmailSender")
         self.gridLayout_2.addWidget(self.txtEmailSender, 1, 1, 1, 1)
-        self.label_10 = QtWidgets.QLabel(parent=self.layoutWidget1)
+        self.label_10 = QtWidgets.QLabel(parent=self.layoutWidget2)
         self.label_10.setStyleSheet("font: 75 10pt \"MS Shell Dlg 2\";")
         self.label_10.setObjectName("label_10")
         self.gridLayout_2.addWidget(self.label_10, 1, 0, 1, 1)
-        self.txtPassword = QtWidgets.QLineEdit(parent=self.layoutWidget1)
+        self.txtPassword = QtWidgets.QLineEdit(parent=self.layoutWidget2)
         self.txtPassword.setObjectName("txtPassword")
         self.gridLayout_2.addWidget(self.txtPassword, 3, 1, 1, 1)
-        self.label_11 = QtWidgets.QLabel(parent=self.layoutWidget1)
+        self.label_11 = QtWidgets.QLabel(parent=self.layoutWidget2)
         self.label_11.setStyleSheet("font: 75 10pt \"MS Shell Dlg 2\";")
         self.label_11.setObjectName("label_11")
         self.gridLayout_2.addWidget(self.label_11, 2, 0, 1, 1)
-        self.txtEmailReceiver = QtWidgets.QLineEdit(parent=self.layoutWidget1)
+        self.txtEmailReceiver = QtWidgets.QLineEdit(parent=self.layoutWidget2)
         self.txtEmailReceiver.setObjectName("txtEmailReceiver")
         self.gridLayout_2.addWidget(self.txtEmailReceiver, 2, 1, 1, 1)
-        self.label_12 = QtWidgets.QLabel(parent=self.layoutWidget1)
+        self.label_12 = QtWidgets.QLabel(parent=self.layoutWidget2)
         self.label_12.setStyleSheet("font: 75 10pt \"MS Shell Dlg 2\";")
         self.label_12.setObjectName("label_12")
         self.gridLayout_2.addWidget(self.label_12, 3, 0, 1, 1)
-        self.conf = QtWidgets.QSpinBox(parent=self.layoutWidget1)
+        self.conf = QtWidgets.QSpinBox(parent=self.layoutWidget2)
         self.conf.setObjectName("conf")
         self.gridLayout_2.addWidget(self.conf, 0, 1, 1, 1)
-        self.btnUpdateSettings = QtWidgets.QPushButton(parent=self.layoutWidget1)
+        self.btnUpdateSettings = QtWidgets.QPushButton(parent=self.layoutWidget2)
         self.btnUpdateSettings.setStyleSheet("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 0);")
-        self.btnUpdateSettings.setIcon(icon4)
+        self.btnUpdateSettings.setIcon(icon3)
         self.btnUpdateSettings.setObjectName("btnUpdateSettings")
         self.gridLayout_2.addWidget(self.btnUpdateSettings, 4, 1, 1, 1)
         self.stackedWidget.addWidget(self.page)
@@ -522,25 +515,21 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        self.admin.setText(_translate("MainWindow", "Amine"))
+        self.timestamps.setText(_translate("MainWindow", "timestamps"))
         self.title.setText(_translate("MainWindow", "TextLabel"))
         self.title2.setText(_translate("MainWindow", "TextLabel"))
         self.pushButton.setText(_translate("MainWindow", "PushButton"))
-        self.admin.setText(_translate("MainWindow", "Amine"))
-        self.timestamps.setText(_translate("MainWindow", "timestamps"))
         self.groupBox.setTitle(_translate("MainWindow", "Total Users"))
         self.nbUsers.setText(_translate("MainWindow", "0"))
         self.groupBox_3.setTitle(_translate("MainWindow", "Entries Today"))
         self.entriesToday.setText(_translate("MainWindow", "0"))
-        self.groupBox_2.setTitle(_translate("MainWindow", "Unrecognized Persons Today"))
-        self.nbUnrecognizedToday.setText(_translate("MainWindow", "0"))
-        self.groupBox_4.setTitle(_translate("MainWindow", "Recognized Persons Today"))
-        self.nbRecognizedPersons.setText(_translate("MainWindow", "0"))
         self.groupBox_5.setTitle(_translate("MainWindow", "Number of wrong predictions"))
         self.wrongPrediction.setText(_translate("MainWindow", "0"))
         self.groupBox_6.setTitle(_translate("MainWindow", "Number of true predictions"))
@@ -564,9 +553,9 @@ class Ui_MainWindow(object):
         self.cmbUsers.setItemText(2, _translate("MainWindow", "Departement"))
         self.cmbUsers.setItemText(3, _translate("MainWindow", "Role"))
         self.btnAddUser.setText(_translate("MainWindow", "Add"))
-        self.btnExportUser.setText(_translate("MainWindow", "Export"))
         self.btnUpdateUser.setText(_translate("MainWindow", "Update"))
         self.btnRmoveUser.setText(_translate("MainWindow", "Remove"))
+        self.btnExportUser.setText(_translate("MainWindow", "Export"))
         self.label_3.setText(_translate("MainWindow", "Logs"))
         self.btnExportLogs.setText(_translate("MainWindow", "Export"))
         item = self.tableLogs.horizontalHeaderItem(0)
@@ -575,8 +564,6 @@ class Ui_MainWindow(object):
         item.setText(_translate("MainWindow", "User"))
         item = self.tableLogs.horizontalHeaderItem(2)
         item.setText(_translate("MainWindow", "Timstamp"))
-        item = self.tableLogs.horizontalHeaderItem(3)
-        item.setText(_translate("MainWindow", "Emotion"))
         self.label_6.setText(_translate("MainWindow", "Departements"))
         item = self.tableDepartements.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "Id Departement"))
@@ -620,7 +607,6 @@ class Ui_MainWindow(object):
         self.btnUpdateSettings.setText(_translate("MainWindow", "Update"))
 
 
-
 class MainWindow(QMainWindow):
     def __init__(self,user_name):
         super().__init__()
@@ -648,7 +634,7 @@ class MainWindow(QMainWindow):
         self.menu_btn = self.ui.pushButton
         self.menu_btn.setObjectName("menu_btn")
         self.menu_btn.setText("")
-        self.menu_btn.setIcon(QIcon("./icon/close.png"))
+        self.menu_btn.setIcon(QIcon("./icon/open.png"))
         self.menu_btn.setIconSize(QSize(30,30))
         self.menu_btn.setCheckable(True)
         self.menu_btn.setChecked(True)
@@ -660,20 +646,7 @@ class MainWindow(QMainWindow):
         self.title.setHidden(True)
         self.side_menu_icon.setVisible(True)
 
-        # self.side_menu_layout.setContentsMargins(0, 0, 0, 0)
-        # self.side_menu_layout.setSpacing(0)
-
-        # self.parent_layout.setContentsMargins(0, 0, 0, 0)
-
         self.setContentsMargins(0, 0, 0, 0)
-
-
-
-        # self.side_menu.setMaximumWidth(200)  # Define the width when visible
-        # self.side_menu.setHidden(True)      # Initially hide the sidebar
-        # self.side_menu_icon.setMaximumWidth(50)  # Define the width for the icon-only menu
-
-
 
         self.main_content = self.ui.stackedWidget
 
@@ -681,28 +654,22 @@ class MainWindow(QMainWindow):
             {
                 "name":"Dashboard",
                 "icon":"./icon/dashboard.png"
-            },
-                        {
+            },{
                 "name":"Manage Users",
                 "icon":"./icon/group.png"
-            },
-                        {
+            },{
                 "name":"Logs",
                 "icon":"./icon/log.png"
-            },
-                        {
+            },{
                 "name":"Departements",
                 "icon":"./icon/department.png"
-            },
-                        {
+            },{
                 "name":"Admins",
                 "icon":"./icon/user.png"
-            },
-                        {
+            },{
                 "name":"Feed Back",
                 "icon":"./icon/feedback.png"
-            },
-                        {
+            },{
                 "name":"Settings",
                 "icon":"./icon/setting.png"
             },
@@ -710,16 +677,14 @@ class MainWindow(QMainWindow):
 
         self.init_list_widget()
         self.init_signal_slot()
-        # self.init_stackwidget()
 
-        # Load dashboard
+        # Load dashboard infromations
         self.ui.nbUsers.setText(str(self.db_manager.total_users()))
         self.ui.entriesToday.setText(str(self.db_manager.total_entries_today()))
         self.ui.truePredictions.setText(str(self.db_manager.total_true_predictions()))
         self.ui.wrongPrediction.setText(str(self.db_manager.total_wrong_predictions()))
         self.ui.entrieslast7.setText(str(self.db_manager.total_entries_last_7_days()))
         
-
         # Load data into tables
         self.load_users_table()
         self.load_admins_table()
@@ -769,8 +734,10 @@ class MainWindow(QMainWindow):
 
         # Research Buttons
         self.ui.btnSearchUsers.clicked.connect(self.user_search)
-        # self.ui.btnSearchLogs.clicked.connect(self.logs_search)
+        self.ui.btnSearchLogs.clicked.connect(self.logs_search)
         self.ui.btnSearchFeedback.clicked.connect(self.feed_back_search)
+
+        self.ui.bntRefreshLogs.clicked.connect(self.load_logs_table)
         
     def init_signal_slot(self):
         self.menu_btn.toggled["bool"].connect(self.side_menu.setHidden)
@@ -778,26 +745,15 @@ class MainWindow(QMainWindow):
         self.menu_btn.toggled["bool"].connect(self.title.setHidden)
         self.menu_btn.toggled["bool"].connect(self.side_menu_icon.setVisible)
 
-        # self.side_menu.currentRowChanged["int"].connect(self.main_content.setCurrentIndex)
-        # self.side_menu_icon.currentRowChanged["int"].connect(self.main_content.setCurrentIndex)
-        # self.side_menu.currentRowChanged["int"].connect(self.side_menu_icon.setCurrentIndex)
-        # self.side_menu_icon.currentRowChanged["int"].connect(self.side_menu.setCurrentRow)
-
         self.side_menu.currentRowChanged.connect(self.main_content.setCurrentIndex)
         self.side_menu_icon.currentRowChanged.connect(self.main_content.setCurrentIndex)
         self.side_menu.currentRowChanged.connect(self.side_menu_icon.setCurrentRow)
         self.side_menu_icon.currentRowChanged.connect(self.side_menu.setCurrentRow)
-
-
-
-
-
         self.menu_btn.toggled.connect(self.button_icon_change)
 
     def update_timestamp(self):
         current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         self.ui.timestamps.setText(f"{current_time}")
-
 
     def export_table_to_excel(self, table_widget):
         try:
@@ -866,7 +822,6 @@ class MainWindow(QMainWindow):
             self.icon_animation.setEndValue(50)  # Show icon-only menu
             self.icon_animation.start()
 
-
     def button_icon_change(self, status):
             if status:  # Sidebar closed
                 self.menu_btn.setIcon(QIcon("./icon/open.png"))
@@ -874,7 +829,6 @@ class MainWindow(QMainWindow):
             else:  # Sidebar opened
                 self.menu_btn.setIcon(QIcon("./icon/close.png"))
                 self.animate_sidebar(True)  # Expand sidebar
-
 
     def init_list_widget(self):
         self.side_menu.clear()
@@ -892,26 +846,6 @@ class MainWindow(QMainWindow):
             item_new.setText(menu.get("name"))
             self.side_menu.addItem(item_new)
             self.side_menu.setCurrentRow
-
-    # def init_stackwidget(self):
-    #     widget_list = self.main_content.findChildren(QWidget)
-    #     for widget in widget_list:
-    #         self.main_content.removeWidget(widget)
-
-    #     for menu in self.menu_list:
-    #         text = menu.get("name")
-    #         layout = QGridLayout()
-    #         label = QLabel(text=text)
-    #         label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-    #         font = QFont()
-    #         font.setPixelSize(20)
-    #         label.setFont(font)
-    #         layout.addWidget(label)
-    #         new_page = QWidget()
-    #         new_page.setLayout(layout)
-    #         self.main_content.addWidget(new_page)
-
-
 
     def load_users_table(self):
         rows = self.db_manager.fetch_users()
@@ -941,7 +875,6 @@ class MainWindow(QMainWindow):
             for col_index, col_data in enumerate(row_data):
                 self.ui.tableDepartements.setItem(row_index, col_index, QTableWidgetItem(str(col_data)))
 
-    
     def load_feedback_table(self):
         rows = self.db_manager.fetch_feedback()
         self.ui.tableFeddback.setRowCount(len(rows))
@@ -1146,7 +1079,7 @@ class MainWindow(QMainWindow):
                 if item == "Id":
                         if table.item(row, 0).text() != search_value:  # Assuming Id is in the first column (index 0)
                                 rows_to_delete.append(row)  # Mark row for deletion
-                elif item == "Nom":
+                elif item == "Name":
                         if table.item(row, 1).text().lower() != search_value.lower():  # Assuming Name is in the second column (index 1)
                                 rows_to_delete.append(row)  # Mark row for deletion
                 elif item == "Departement":
@@ -1160,41 +1093,34 @@ class MainWindow(QMainWindow):
         for row in reversed(rows_to_delete):
                 table.removeRow(row)
 
+    def logs_search(self):
+        # Get the selected start and end dates from the QDateEdit widgets
+        start_date = self.ui.dateEdit_1.date().toPyDate()  # Start date from QDateEdit
+        end_date = self.ui.dateEdit_2.date().toPyDate()  # End date from QDateEdit
+        table = self.ui.tableLogs  # Assuming the table widget is named tableLogs
 
-#     def logs_search(self):
-#         # Get the selected start and end dates from the QDateEdit widgets
-#         start_date = self.ui.dateEdit_1.date().toPyDate()  # Start date from QDateEdit
-#         end_date = self.ui.dateEdit_2.date().toPyDate()  # End date from QDateEdit
-#         table = self.ui.tableLogs  # Assuming the table widget is named tableUsers
+        # List of rows to delete
+        rows_to_delete = []
 
-#         # List of rows to delete
-#         rows_to_delete = []
+        # Iterate over all rows and check if the timestamp is within the date range
+        for row in range(table.rowCount()):
+                # Assuming Timestamp is in the third column (index 2) in format 'YYYY-MM-DD HH:MM:SS'
+                timestamp_str = table.item(row, 2).text()  # Get the timestamp string from the table
 
-#         # Iterate over all rows and check if the timestamp is within the date range
-#         for row in range(table.rowCount()):
-#                 # Assuming Timestamp is in the fifth column (index 4) in format 'YYYY-MM-DD HH:MM:SS'
-#                 timestamp_str = table.item(row, 2).text()  # Get the timestamp string from the table
-#                 print(timestamp_str)
+                try:
+                        row_timestamp = datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S")  # Adjust format if needed
 
-#                 # try:
-#                 #         print(start_date,end_date)
-#                 #         print(timestamp_str)
-#                 #         row_timestamp = datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S")  # Adjust format if needed
-#                 #         print(row_timestamp)
-#                 #         print("#########╠")
+                        if not (start_date <= row_timestamp.date() <= end_date):  # Only compare the date part
+                                rows_to_delete.append(row)
 
+                except ValueError:
+                        # If there's an issue parsing the timestamp, you can skip that row or log a message
+                        print(f"Invalid timestamp format in row {row}. Skipping this row.")
+                        continue
 
-#                 #         if not (start_date <= row_timestamp.date() <= end_date):  # Only compare the date part
-#                 #                 rows_to_delete.append(row)
-
-#                 # except ValueError:
-#                 #         # If there's an issue parsing the timestamp, you can skip that row or log a message
-#                 #         print(f"Invalid timestamp format in row {row}. Skipping this row.")
-#                 # continue
-
-#         # Now delete the marked rows
-#         for row in reversed(rows_to_delete):
-#                 table.removeRow(row)
+        # Now delete the marked rows
+        for row in reversed(rows_to_delete):
+                table.removeRow(row)
 
     def feed_back_search(self):
         item = self.ui.cmbFeedback.currentIndex()  
